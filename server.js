@@ -13,25 +13,21 @@ const productCategoryRoutes = require('./routes/productCategoryRoutes');
 const productRoutes = require('./routes/productRoutes');
 const newsRoutes = require('./routes/newsRoutes');
 const orderRoutes = require('./routes/orderRoutes');
-const orderDetailRoutes = require('./routes/orderDetailRoutes');
 const roleRoutes = require('./routes/roleRoutes');
-const accountRoutes = require('./routes/accountRoutes');
-const userRoutes = require('./routes/userRoutes');
+const userAccountRoutes = require('./routes/userAccountRoutes');
 
 // Use routes
 app.use('/product-categories', productCategoryRoutes);
 app.use('/products', productRoutes);
 app.use('/news', newsRoutes);
 app.use('/orders', orderRoutes);
-app.use('/order-details', orderDetailRoutes);
 app.use('/roles', roleRoutes);
-app.use('/accounts', accountRoutes);
-app.use('/users', userRoutes);
+app.use('/accounts', userAccountRoutes); // Thêm tuyến đường quản lý account & user
 
 connectDB().then(() => {
     app.listen(port, () => {
-        console.log(`🚀 Máy chủ đang chạy trên http://localhost:${port}`);
+        console.log(`Máy chủ đang chạy trên http://localhost:${port}`);
     });
 }).catch(error => {
-    console.error('❌ Không khởi động được máy chủ:', error);
+    console.error('Không khởi động được máy chủ:', error);
 });

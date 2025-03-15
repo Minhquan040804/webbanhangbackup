@@ -12,7 +12,7 @@ exports.getAllNews = async (req, res) => {
 
 exports.getNewsById = async (req, res) => {
     try {
-        const id = String(req.params.id);
+        const id = req.params.id;
         if (!ObjectId.isValid(id)) return res.status(400).json({ message: 'ID không hợp lệ' });
         const news = await getDB().collection('news').findOne({ _id: new ObjectId(id) });
         if (!news) return res.status(404).json({ message: 'Không tìm thấy tin tức' });
@@ -37,7 +37,7 @@ exports.createNews = async (req, res) => {
 
 exports.updateNews = async (req, res) => {
     try {
-        const id = String(req.params.id);
+        const id = req.params.id;
         if (!ObjectId.isValid(id)) return res.status(400).json({ message: 'ID không hợp lệ' });
         const result = await getDB().collection('news').updateOne(
             { _id: new ObjectId(id) },
@@ -52,7 +52,7 @@ exports.updateNews = async (req, res) => {
 
 exports.deleteNews = async (req, res) => {
     try {
-        const id = String(req.params.id);
+        const id = req.params.id;
         if (!ObjectId.isValid(id)) return res.status(400).json({ message: 'ID không hợp lệ' });
         const result = await getDB().collection('news').deleteOne({ _id: new ObjectId(id) });
         if (result.deletedCount === 0) return res.status(404).json({ message: 'Không tìm thấy tin tức' });

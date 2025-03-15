@@ -1,14 +1,18 @@
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb://localhost:27017';
-const dbName = 'WebBanHang';
+const uri = 'mongodb+srv://Nhom12pmmnm:pmmnmNhom12@cluster0.vf8xv.mongodb.net/WebBanHang?retryWrites=true&w=majority';
 let db;
 
 async function connectDB() {
-    const client = new MongoClient(uri);
-    await client.connect();
-    db = client.db(dbName);
-    console.log(`✅ Kết nối MongoDB thành công: ${dbName}`);
+    try {
+        const client = new MongoClient(uri);
+        await client.connect();
+        db = client.db();
+        console.log(`✅ Kết nối MongoDB Atlas thành công: WebBanHang`);
+    } catch (error) {
+        console.error('❌ Lỗi kết nối MongoDB:', error);
+        process.exit(1);
+    }
 }
 
 function getDB() {
