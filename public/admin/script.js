@@ -68,25 +68,34 @@ document.addEventListener('DOMContentLoaded', function() {
     handleResize();
   });
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadContent("dashboard.html");
+  document.addEventListener("DOMContentLoaded", function () {
+    // Luôn đặt trang mặc định là Dashboard khi mở lại trang
+    const defaultPage = "/views/admin/dashboard/index.html";
+    loadContent(defaultPage);
+    localStorage.setItem("currentPage", defaultPage); // Cập nhật lại localStorage về mặc định
 
-  document.querySelectorAll(".sidebar-menu-button, .sidebar-submenu-button").forEach(link => {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-      const page = this.getAttribute("data-page");
-      if (page) {
-        loadContent(page);
-      }
+    document.querySelectorAll(".sidebar-menu-button, .sidebar-submenu-button").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const page = this.getAttribute("data-page");
+            if (page) {
+                localStorage.setItem("currentPage", page); // Lưu trang hiện tại
+                loadContent(page);
+            }
+        });
     });
-  });
 });
 
 function loadContent(page) {
-  fetch(page)
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById("content").innerHTML = html;
-    })
-    .catch(error => console.error("Lỗi khi tải nội dung:", error));
+    fetch(page)
+        .then(response => {
+            if (!response.ok) throw new Error(`Lỗi ${response.status}: Không tìm thấy ${page}`);
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById("content").innerHTML = html;
+        })
+        .catch(error => console.error("Lỗi khi tải nội dung:", error));
 }
+
+  

@@ -1,12 +1,17 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { connectDB } = require('./config/db');
+const path = require('path');
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+const cors = require("cors");
+app.use(cors()); // Cho phép tất cả nguồn truy cập API
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Import routes
 const productCategoryRoutes = require('./routes/productCategoryRoutes');
@@ -23,6 +28,11 @@ app.use('/news', newsRoutes);
 app.use('/orders', orderRoutes);
 app.use('/roles', roleRoutes);
 app.use('/accounts', userAccountRoutes);
+
+// Route để mở trang layout_admin
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/views/layout_admin.html'));
+});
 
 connectDB().then(() => {
     app.listen(port, () => {

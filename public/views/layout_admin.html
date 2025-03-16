@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang quản trị</title>
-  <link rel="stylesheet" href="/public/admin/styles.css">
+  <link rel="stylesheet" href="/admin/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -23,7 +23,7 @@
           <div class="sidebar-group-label">Tổng quan</div>
           <ul class="sidebar-menu">
             <li class="sidebar-menu-item">
-              <a href="#" class="sidebar-menu-button" data-page="admin/dashboard.html">
+              <a href="#" class="sidebar-menu-button" data-page="/views/admin/dashboard/index.html">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
               </a>
@@ -41,21 +41,21 @@
               </a>
               <ul class="sidebar-submenu">
                 <li class="sidebar-submenu-item">
-                  <a href="#" class="sidebar-submenu-button" data-page="admin/product_category.html">Danh mục</a>
+                  <a href="#" class="sidebar-submenu-button" data-page="/views/admin/product_category/index.html">Danh mục</a>
                 </li>
                 <li class="sidebar-submenu-item">
-                  <a href="#" class="sidebar-submenu-button" data-page="admin/product.html">Sản phẩm</a>
+                  <a href="#" class="sidebar-submenu-button" data-page="/views/admin/product/index.html">Sản phẩm</a>
                 </li>
               </ul>
             </li>
             <li class="sidebar-menu-item">
-              <a href="#" class="sidebar-menu-button" data-page="admin/orders.html">
+              <a href="#" class="sidebar-menu-button" data-page="/views/admin/order/index.html">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Đơn hàng</span>
               </a>
             </li>
             <li class="sidebar-menu-item">
-              <a href="#" class="sidebar-menu-button" data-page="admin/news.html">
+              <a href="#" class="sidebar-menu-button" data-page="/views/admin/news/index.html">
                 <i class="fas fa-newspaper"></i>
                 <span>Tin tức</span>
               </a>
@@ -67,13 +67,13 @@
           <div class="sidebar-group-label">Người dùng</div>
           <ul class="sidebar-menu">
             <li class="sidebar-menu-item">
-              <a href="#" class="sidebar-menu-button" data-page="admin/roles.html">
+              <a href="#" class="sidebar-menu-button" data-page="/views/admin/role/index.html">
                 <i class="fas fa-user-cog"></i>
                 <span>Vai trò</span>
               </a>
             </li>
             <li class="sidebar-menu-item">
-              <a href="#" class="sidebar-menu-button" data-page="admin/accounts.html">
+              <a href="#" class="sidebar-menu-button" data-page="/views/admin/account/index.html">
                 <i class="fas fa-user"></i>
                 <span>Tài khoản</span>
               </a>
@@ -99,7 +99,7 @@
         <h1>Bảng Điều Khiển Admin</h1>
       </div>
       
-      <div class="content-wrapper"  id="content">
+      <div class="content-wrapper" id="content">
         <div class="content-box">
           <h2>Chào mừng đến với Trang quản trị</h2>
           <p>Chọn một mục từ sidebar để bắt đầu quản lý.</p>
@@ -108,6 +108,6 @@
     </div>
   </div>
 
-  <script src="/public/admin/script.js"></script>
+  <script src="/admin/script.js"></script>
 </body>
 </html>
