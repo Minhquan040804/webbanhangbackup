@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", function () {
   loadContent("dashboard.html");
 
-  document.querySelectorAll(".sidebar-menu-button").forEach(link => {
+  document.querySelectorAll(".sidebar-menu-button, .sidebar-submenu-button").forEach(link => {
     link.addEventListener("click", function (event) {
       event.preventDefault();
       const page = this.getAttribute("data-page");
@@ -90,4 +90,3 @@ function loadContent(page) {
     })
     .catch(error => console.error("Lỗi khi tải nội dung:", error));
 }
-  
