@@ -1,57 +1,8 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý Danh mục</title>
-  <link rel="stylesheet" href="/admin/styles.css">
-  <script defer src="/admin/script.js"></script>
-</head>
-<body>
-  <div class="content-box">
+<div class="content-box">
     <h2>Danh mục sản phẩm</h2>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>STT</th>
-          <th>Tên danh mục</th>
-        </tr>
-      </thead>
-      <tbody id="category-list">
-        <!-- Danh mục sẽ được thêm vào đây -->
-      </tbody>
-    </table>
+    <ul>
+      <li>Sách Khoa Học</li>
+      <li>Sách Văn Học</li>
+    </ul>
   </div>
   
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-  fetch("http://localhost:3000/product-categories")
-    .then(response => response.json())
-    .then(categories => {
-      console.log("Dữ liệu API nhận được:", categories); // Kiểm tra dữ liệu
-      const tableBody = document.getElementById("category-list");
-
-      if (!tableBody) {
-        console.error("Không tìm thấy phần tử #category-list");
-        return;
-      }
-
-      tableBody.innerHTML = ""; // Xóa dữ liệu cũ
-
-      let htmlContent = "";
-      categories.forEach((category, index) => {
-        htmlContent += `
-          <tr>
-            <td>${index + 1}</td>
-            <td>${category.name}</td>
-          </tr>`;
-      });
-
-      tableBody.innerHTML = htmlContent; // Cập nhật bảng
-    })
-    .catch(error => console.error("Lỗi khi tải danh mục:", error));
-});
-
-  </script>  
-</body>
-</html>
