@@ -69,17 +69,17 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   document.addEventListener("DOMContentLoaded", function () {
-    // Luôn đặt trang mặc định là Dashboard khi mở lại trang
     const defaultPage = "/views/admin/dashboard/index.html";
-    loadContent(defaultPage);
-    localStorage.setItem("currentPage", defaultPage); // Cập nhật lại localStorage về mặc định
+    let savedPage = sessionStorage.getItem("currentPage") || defaultPage; // Lưu trạng thái theo session
+
+    loadContent(savedPage);
 
     document.querySelectorAll(".sidebar-menu-button, .sidebar-submenu-button").forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
             const page = this.getAttribute("data-page");
             if (page) {
-                localStorage.setItem("currentPage", page); // Lưu trang hiện tại
+                sessionStorage.setItem("currentPage", page); // Lưu trang hiện tại trong sessionStorage
                 loadContent(page);
             }
         });
@@ -97,5 +97,6 @@ function loadContent(page) {
         })
         .catch(error => console.error("Lỗi khi tải nội dung:", error));
 }
+
 
   
