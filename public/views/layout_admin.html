@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang quản trị</title>
+  <link rel="stylesheet" href="/public/admin/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>Admin Panel</h2>
+        <div class="sidebar-close" id="sidebarClose">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      
+      <div class="sidebar-content">
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Tổng quan</div>
+          <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+              <a href="#" class="sidebar-menu-button" data-page="admin/dashboard.html">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Quản lý</div>
+          <ul class="sidebar-menu">
+            <li class="sidebar-menu-item has-submenu">
+              <a href="#" class="sidebar-menu-button">
+                <i class="fas fa-box"></i>
+                <span>Quản lý sản phẩm</span>
+                <i class="fas fa-chevron-down submenu-icon"></i>
+              </a>
+              <ul class="sidebar-submenu">
+                <li class="sidebar-submenu-item">
+                  <a href="#" class="sidebar-submenu-button" data-page="admin/product_category.html">Danh mục</a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="#" class="sidebar-submenu-button" data-page="admin/product.html">Sản phẩm</a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-menu-item">
+              <a href="#" class="sidebar-menu-button" data-page="admin/orders.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Đơn hàng</span>
+              </a>
+            </li>
+            <li class="sidebar-menu-item">
+              <a href="#" class="sidebar-menu-button" data-page="admin/news.html">
+                <i class="fas fa-newspaper"></i>
+                <span>Tin tức</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Người dùng</div>
+          <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+              <a href="#" class="sidebar-menu-button" data-page="admin/roles.html">
+                <i class="fas fa-user-cog"></i>
+                <span>Vai trò</span>
+              </a>
+            </li>
+            <li class="sidebar-menu-item">
+              <a href="#" class="sidebar-menu-button" data-page="admin/accounts.html">
+                <i class="fas fa-user"></i>
+                <span>Tài khoản</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="sidebar-footer">
+        <a href="#" class="sidebar-menu-button logout-button">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Đăng xuất</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="header">
+        <button id="sidebarToggle" class="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1>Bảng Điều Khiển Admin</h1>
+      </div>
+      
+      <div class="content-wrapper"  id="content">
+        <div class="content-box">
+          <h2>Chào mừng đến với Trang quản trị</h2>
+          <p>Chọn một mục từ sidebar để bắt đầu quản lý.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/public/admin/script.js"></script>
+</body>
+</html>

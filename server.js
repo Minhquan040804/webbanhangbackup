@@ -22,7 +22,7 @@ app.use('/products', productRoutes);
 app.use('/news', newsRoutes);
 app.use('/orders', orderRoutes);
 app.use('/roles', roleRoutes);
-app.use('/accounts', userAccountRoutes); // Thêm tuyến đường quản lý account & user
+app.use('/accounts', userAccountRoutes);
 
 connectDB().then(() => {
     app.listen(port, () => {
