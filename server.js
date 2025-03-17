@@ -9,9 +9,14 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 const cors = require("cors");
-app.use(cors()); // Cho phép tất cả nguồn truy cập API
+app.use(cors({
+    origin: "*", // Chấp nhận mọi domain (Dùng khi test)
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type"
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/admin', express.static(path.join(__dirname, 'public/views/admin')));
 
 // Import routes
 const productCategoryRoutes = require('./routes/productCategoryRoutes');

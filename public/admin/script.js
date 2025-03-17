@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarClose = document.getElementById('sidebarClose');
     const mainContent = document.querySelector('.main-content');
     const menuItems = document.querySelectorAll('.has-submenu');
+    const iframe = document.getElementById('mainFrame');
     
     // Tạo overlay cho mobile
     const overlay = document.createElement('div');
@@ -13,52 +14,49 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Toggle sidebar trên desktop
     sidebarToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('collapsed');
-      mainContent.classList.toggle('expanded');
-      
-      // Xử lý cho mobile
-      if (window.innerWidth <= 768) {
-        sidebar.classList.toggle('mobile-open');
-        overlay.classList.toggle('active');
-      }
+        sidebar.classList.toggle('collapsed');
+        mainContent.classList.toggle('expanded');
+        
+        // Xử lý cho mobile
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle('mobile-open');
+            overlay.classList.toggle('active');
+        }
     });
     
     // Đóng sidebar trên mobile
     sidebarClose.addEventListener('click', function() {
-      sidebar.classList.remove('mobile-open');
-      overlay.classList.remove('active');
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
     });
     
     // Đóng sidebar khi click vào overlay
     overlay.addEventListener('click', function() {
-      sidebar.classList.remove('mobile-open');
-      overlay.classList.remove('active');
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
     });
     
     // Toggle submenu
     menuItems.forEach(item => {
-      item.addEventListener('click', function(e) {
-        // Nếu click vào submenu icon hoặc menu button
-        if (e.target.matches('.sidebar-menu-button') || 
-            e.target.matches('.submenu-icon') ||
-            e.target.parentElement.matches('.sidebar-menu-button')) {
-          // Ngăn việc chuyển trang khi click vào menu có submenu
-          e.preventDefault();
-          // Toggle class để mở/đóng submenu
-          this.classList.toggle('submenu-open');
-        }
-      });
+        item.addEventListener('click', function(e) {
+            if (e.target.matches('.sidebar-menu-button') || 
+                e.target.matches('.submenu-icon') ||
+                e.target.parentElement.matches('.sidebar-menu-button')) {
+                e.preventDefault();
+                this.classList.toggle('submenu-open');
+            }
+        });
     });
     
     // Responsive handler
     function handleResize() {
-      if (window.innerWidth <= 768) {
-        sidebar.classList.remove('collapsed');
-        mainContent.classList.remove('expanded');
-      } else {
-        sidebar.classList.remove('mobile-open');
-        overlay.classList.remove('active');
-      }
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('collapsed');
+            mainContent.classList.remove('expanded');
+        } else {
+            sidebar.classList.remove('mobile-open');
+            overlay.classList.remove('active');
+        }
     }
     
     // Xử lý khi thay đổi kích thước màn hình
@@ -66,20 +64,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Khởi tạo ban đầu
     handleResize();
-  });
+});
 
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const defaultPage = "/views/admin/dashboard/index.html";
-    let savedPage = sessionStorage.getItem("currentPage") || defaultPage; // Lưu trạng thái theo session
-
+    let savedPage = sessionStorage.getItem("currentPage") || defaultPage;
+    
     loadContent(savedPage);
-
+    
     document.querySelectorAll(".sidebar-menu-button, .sidebar-submenu-button").forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
             const page = this.getAttribute("data-page");
             if (page) {
-                sessionStorage.setItem("currentPage", page); // Lưu trang hiện tại trong sessionStorage
+                sessionStorage.setItem("currentPage", page);
                 loadContent(page);
             }
         });
@@ -87,16 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadContent(page) {
-    fetch(page)
-        .then(response => {
-            if (!response.ok) throw new Error(`Lỗi ${response.status}: Không tìm thấy ${page}`);
-            return response.text();
-        })
-        .then(html => {
-            document.getElementById("content").innerHTML = html;
-        })
-        .catch(error => console.error("Lỗi khi tải nội dung:", error));
+    const iframe = document.getElementById("mainFrame");
+    if (iframe) {
+        iframe.src = page;
+    } else {
+        console.error("Không tìm thấy phần tử iframe để tải nội dung.");
+    }
 }
-
-
-  

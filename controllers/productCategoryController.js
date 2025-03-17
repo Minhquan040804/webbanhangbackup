@@ -1,5 +1,7 @@
 const { getDB } = require('../config/db');
 const { ObjectId } = require('mongodb');
+const slugify = require('slugify');
+
 
 // Lấy tất cả danh mục sản phẩm
 exports.getAllCategories = async (req, res) => {
@@ -30,20 +32,26 @@ exports.getCategoryById = async (req, res) => {
 exports.createCategory = async (req, res) => {
     try {
         const { name, alias } = req.body;
-        if (!name || !alias) return res.status(400).json({ message: 'Thiếu dữ liệu đầu vào' });
+        if (!name) return res.status(400).json({ message: 'Thiếu dữ liệu đầu vào: name' });
+
+        // Tạo alias tự động nếu không có hoặc rỗng
+        const computedAlias = (!alias || alias.trim() === '') 
+                              ? slugify(name, { lower: true, strict: false, locale: 'vi' }) 
+                              : alias;
 
         const db = getDB();
         
-        // Kiểm tra xem danh mục đã tồn tại chưa
+        // Kiểm tra xem danh mục đã tồn tại chưa (theo tên)
         const existingCategory = await db.collection('product_categories').findOne({ name });
         if (existingCategory) return res.status(400).json({ message: 'Danh mục đã tồn tại' });
 
-        const result = await db.collection('product_categories').insertOne({ name, alias });
+        const result = await db.collection('product_categories').insertOne({ name, alias: computedAlias });
         res.status(201).json({ message: 'Thêm danh mục thành công', data: result.insertedId });
     } catch (error) {
         res.status(500).json({ message: 'Lỗi khi tạo danh mục', error });
     }
 };
+
 
 // Cập nhật danh mục (kiểm tra trùng tên)
 exports.updateCategory = async (req, res) => {
@@ -52,7 +60,12 @@ exports.updateCategory = async (req, res) => {
         if (!ObjectId.isValid(id)) return res.status(400).json({ message: 'ID không hợp lệ' });
 
         const { name, alias } = req.body;
-        if (!name || !alias) return res.status(400).json({ message: 'Thiếu dữ liệu đầu vào' });
+        if (!name) return res.status(400).json({ message: 'Thiếu dữ liệu đầu vào: name' });
+
+        // Tạo alias tự động nếu không có hoặc rỗng
+        const computedAlias = (!alias || alias.trim() === '') 
+                              ? slugify(name, { lower: true, strict: false, locale: 'vi' }) 
+                              : alias;
 
         const db = getDB();
 
@@ -61,12 +74,15 @@ exports.updateCategory = async (req, res) => {
         if (!existingCategory) return res.status(404).json({ message: 'Không tìm thấy danh mục' });
 
         // Kiểm tra xem tên danh mục đã tồn tại chưa (trừ chính nó)
-        const duplicateCategory = await db.collection('product_categories').findOne({ name, _id: { $ne: new ObjectId(id) } });
+        const duplicateCategory = await db.collection('product_categories').findOne({ 
+            name, 
+            _id: { $ne: new ObjectId(id) } 
+        });
         if (duplicateCategory) return res.status(400).json({ message: 'Tên danh mục đã tồn tại' });
 
-        const result = await db.collection('product_categories').updateOne(
+        await db.collection('product_categories').updateOne(
             { _id: new ObjectId(id) },
-            { $set: { name, alias } }
+            { $set: { name, alias: computedAlias } }
         );
 
         res.json({ message: 'Cập nhật danh mục thành công' });
@@ -74,6 +90,7 @@ exports.updateCategory = async (req, res) => {
         res.status(500).json({ message: 'Lỗi khi cập nhật danh mục', error });
     }
 };
+
 
 // Xóa danh mục
 exports.deleteCategory = async (req, res) => {
