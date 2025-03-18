@@ -1,9 +1,90 @@
-<link rel="stylesheet" href="/admin/styles.css">
-<div class="content-box">
-    <h2>Vai trò</h2>
-    <ul>
-      <li>Admin</li>
-      <li>Nhân viên</li>
-    </ul>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Vai Trò</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Axios để gọi API -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-light">
+  <div class="content-box p-4">
+    <h3 class="text-center mb-4">Quản Lý Vai Trò</h3>
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-end mb-3">
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createRoleModal">
+            Thêm vai trò
+          </button>
+        </div>
+        <div class="table-responsive rounded overflow-hidden">
+          <table class="table table-striped table-hover text-center align-middle mb-0">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên vai trò</th>
+                <th scope="col">Số tài khoản</th>
+                <th scope="col">Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="roleList">
+              <!-- Dữ liệu vai trò sẽ được tải từ API -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-  
+
+  <!-- Modal tạo vai trò -->
+  <div class="modal fade" id="createRoleModal" tabindex="-1" aria-labelledby="createRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createRoleModalLabel">Thêm vai trò mới</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="roleName" class="form-label">Tên vai trò</label>
+            <input type="text" id="roleName" class="form-control" placeholder="Nhập tên vai trò" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary" onclick="addRole()">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal chỉnh sửa vai trò -->
+  <div class="modal fade" id="editRoleModal" tabindex="-1" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editRoleModalLabel">Chỉnh sửa vai trò</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editRoleId">
+          <div class="mb-3">
+            <label for="editRoleName" class="form-label">Tên vai trò</label>
+            <input type="text" id="editRoleName" class="form-control" placeholder="Nhập tên vai trò" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary" onclick="saveUpdatedRole()">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/roles.js"></script>
+</body>
+</html>
