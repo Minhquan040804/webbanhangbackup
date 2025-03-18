@@ -48,27 +48,34 @@ function fetchCategories() {
 
 // Thêm danh mục mới (alias tự động tạo từ name nếu không nhập)
 function addCategory() {
-    const categoryName = document.getElementById("categoryName").value;
+    const categoryName = document.getElementById("categoryName").value.trim();
     
-    if (!categoryName.trim()) {
+    if (!categoryName) {
         alert("Vui lòng nhập tên danh mục!");
         return;
     }
 
-    // Tạo alias tự động từ tên
     const categoryAlias = slugify(categoryName);
 
     axios.post(API_URL, { name: categoryName, alias: categoryAlias }, {
         headers: { "Content-Type": "application/json" }
     })
     .then(() => {
-        document.getElementById("categoryName").value = "";
-        fetchCategories();
+        document.getElementById("categoryName").value = ""; // Xóa nội dung input
+        fetchCategories(); // Cập nhật danh sách danh mục
+        bootstrap.Modal.getInstance(document.getElementById("createCategoryModal")).hide(); // Đóng modal
     })
     .catch(error => {
         console.error("Lỗi khi thêm danh mục:", error);
         alert("Lỗi khi thêm danh mục! Kiểm tra console để biết chi tiết.");
     });
+}
+
+function handleEnterAdd(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Ngăn hành động mặc định
+        addCategory();          // Gọi hàm thêm danh mục
+    }
 }
 
 // Cập nhật danh mục (alias tự động tạo từ newName nếu để trống)
@@ -77,24 +84,78 @@ function updateCategory(id) {
         console.error("Không có ID danh mục để cập nhật!");
         return;
     }
-    
-    // Yêu cầu nhập tên mới
-    const newName = prompt("Nhập tên mới:");
-    if (!newName) return;
-    
-    // Tự động tạo alias từ newName mà không yêu cầu nhập từ người dùng
-    const newAlias = slugify(newName);
-    
-    axios.put(`${API_URL}/${id}`, { name: newName, alias: newAlias }, {
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(() => fetchCategories())
-    .catch(error => {
-        console.error(`Lỗi khi cập nhật danh mục ${id}:`, error);
-        alert("Lỗi khi cập nhật danh mục! Kiểm tra console để biết chi tiết.");
-    });
+
+    // Lấy thông tin danh mục hiện tại từ bảng
+    axios.get(`${API_URL}/${id}`)
+        .then(response => {
+            const category = response.data;
+            if (!category) {
+                alert("Không tìm thấy danh mục!");
+                return;
+            }
+
+            // Hiển thị dữ liệu trong modal
+            document.getElementById("editCategoryId").value = id;
+            document.getElementById("editCategoryName").value = category.name;
+
+            // Mở modal chỉnh sửa
+            new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
+        })
+        .catch(error => {
+            console.error(`Lỗi khi lấy danh mục ${id}:`, error);
+            alert("Lỗi khi tải dữ liệu danh mục!");
+        });
 }
 
+// Lưu chỉnh sửa danh mục
+function saveUpdatedCategory() {
+    const id = document.getElementById("editCategoryId").value;
+    const newName = document.getElementById("editCategoryName").value.trim();
+
+    if (!id) {
+        console.error("Không có ID danh mục để cập nhật!");
+        return;
+    }
+
+    if (!newName) {
+        alert("Vui lòng nhập tên danh mục!");
+        return;
+    }
+
+    const newAlias = slugify(newName);
+
+    axios.put(`${API_URL}/${id}`, { name: newName, alias: newAlias })
+        .then(() => {
+            fetchCategories(); // Load lại danh sách
+            bootstrap.Modal.getInstance(document.getElementById("editCategoryModal")).hide(); // Đóng modal
+        })
+        .catch(error => console.error(`Lỗi khi cập nhật danh mục ${id}:`, error));
+}
+
+function handleEnter(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Ngăn hành động mặc định
+        saveUpdatedCategory();  // Gọi hàm lưu danh mục
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Focus vào ô input khi mở modal "Thêm danh mục"
+    var createCategoryModal = document.getElementById("createCategoryModal");
+    if (createCategoryModal) {
+        createCategoryModal.addEventListener("shown.bs.modal", function () {
+            document.getElementById("categoryName").focus();
+        });
+    }
+
+    // Focus vào ô input khi mở modal "Chỉnh sửa danh mục"
+    var editCategoryModal = document.getElementById("editCategoryModal");
+    if (editCategoryModal) {
+        editCategoryModal.addEventListener("shown.bs.modal", function () {
+            document.getElementById("editCategoryName").focus();
+        });
+    }
+});
 
 // Xóa danh mục
 function deleteCategory(id) {
