@@ -1,8 +1,21 @@
 const API_PRODUCTS = "http://localhost:3000/products";
 const API_CATEGORIES = "http://localhost:3000/product-categories";
 
-// Lưu danh mục sản phẩm để tham chiếu
 let categoriesMap = {};
+
+// Hàm hiển thị danh mục trong select element
+function populateCategories(selectElement, selectedId = null) {
+    selectElement.innerHTML = '<option value="">Chọn danh mục</option>'; // Tùy chọn mặc định
+    for (const key in categoriesMap) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = categoriesMap[key];
+        if (key === selectedId) {
+            option.selected = true;
+        }
+        selectElement.appendChild(option);
+    }
+}
 
 // Lấy danh sách danh mục sản phẩm
 function fetchCategories() {
@@ -11,6 +24,11 @@ function fetchCategories() {
             response.data.forEach(category => {
                 categoriesMap[category._id.$oid || category._id] = category.name;
             });
+            // Hiển thị danh mục trong form thêm sản phẩm
+            const addCategorySelect = document.getElementById("productCategory");
+            if (addCategorySelect) {
+                populateCategories(addCategorySelect);
+            }
             fetchProducts(); // Sau khi lấy danh mục xong, lấy danh sách sản phẩm
         })
         .catch(error => console.error("Lỗi khi tải danh mục:", error));
@@ -52,19 +70,17 @@ function fetchProducts() {
         .catch(error => console.error("Lỗi khi tải sản phẩm:", error));
 }
 
-// Hàm chuyển đổi text thành slug (alias)
+// Hàm tạo slug
 function slugify(text) {
     return text.toString()
-        // Tách dấu ra khỏi ký tự (normalize về dạng NFD)
         .normalize('NFD')
-        // Loại bỏ các dấu (Unicode combining marks)
         .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
-        .replace(/\s+/g, '-')        // Thay thế khoảng trắng thành dấu gạch ngang
-        .replace(/[^\w\-]+/g, '')     // Loại bỏ các ký tự không phải chữ, số, gạch ngang
-        .replace(/\-\-+/g, '-')       // Thay thế nhiều dấu gạch ngang thành một dấu
-        .replace(/^-+/, '')           // Xóa dấu gạch ngang ở đầu
-        .replace(/-+$/, '');          // Xóa dấu gạch ngang ở cuối
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
 }
 
 // Thêm sản phẩm mới
@@ -74,32 +90,38 @@ function addProduct() {
     const priceSale = document.getElementById("productPriceSale").value;
     const quantity = document.getElementById("productQuantity").value;
     const image = document.getElementById("productImage").value;
-    const categoryId = document.getElementById("productCategory").value; // ID danh mục sản phẩm
+    const categoryId = document.getElementById("productCategory").value;
+    const productId = document.getElementById("productProductId").value.trim(); // Thêm mã sản phẩm
+    const description = document.getElementById("productDescription").value.trim(); // Thêm mô tả
+    const detail = document.getElementById("productDetail").value.trim(); // Thêm chi tiết
 
     if (!title || !price || !quantity || !categoryId) {
-        alert("Vui lòng nhập đầy đủ thông tin!");
+        alert("Vui lòng nhập đầy đủ thông tin bắt buộc!");
         return;
     }
 
-    const alias = createAlias(title);
+    const alias = slugify(title);
     const createdAt = new Date().toISOString();
 
     axios.post(API_PRODUCTS, {
-        title, 
+        title,
         alias,
         price: Number(price),
         price_sale: Number(priceSale) || Number(price),
         quantity: Number(quantity),
         image,
         product_categoryId: categoryId,
+        productId, // Gửi mã sản phẩm
+        description, // Gửi mô tả
+        detail, // Gửi chi tiết
         created_at: { $date: createdAt }
     }, {
         headers: { "Content-Type": "application/json" }
     })
     .then(() => {
         document.getElementById("productForm").reset();
-        fetchProducts(); // Cập nhật danh sách
-        bootstrap.Modal.getInstance(document.getElementById("createProductModal")).hide(); // Đóng modal
+        fetchProducts();
+        bootstrap.Modal.getInstance(document.getElementById("createProductModal")).hide();
     })
     .catch(error => {
         console.error("Lỗi khi thêm sản phẩm:", error);
@@ -128,18 +150,9 @@ function updateProduct(id) {
             document.getElementById("editProductDetail").value = product.detail || "";
             document.getElementById("editProductProductId").value = product.productId || "";
 
-            // Hiển thị danh sách danh mục có thể chọn
             const categorySelect = document.getElementById("editProductCategory");
-            categorySelect.innerHTML = ""; // Xóa danh sách cũ
-            for (const key in categoriesMap) {
-                const option = document.createElement("option");
-                option.value = key;
-                option.textContent = categoriesMap[key];
-                if (key === (product.product_categoryId.$oid || product.product_categoryId)) {
-                    option.selected = true;
-                }
-                categorySelect.appendChild(option);
-            }
+            const categoryId = product.product_categoryId?.$oid || product.product_categoryId;
+            populateCategories(categorySelect, categoryId);
 
             new bootstrap.Modal(document.getElementById("editProductModal")).show();
         })
@@ -163,7 +176,7 @@ function saveUpdatedProduct() {
     const newProductId = document.getElementById("editProductProductId").value.trim();
     const newCategoryId = document.getElementById("editProductCategory").value;
 
-    if (!id || !newTitle ) {
+    if (!id || !newTitle) {
         alert("Vui lòng nhập đầy đủ thông tin!");
         return;
     }
@@ -193,7 +206,7 @@ function deleteProduct(id) {
         console.error("Không có ID sản phẩm để xóa!");
         return;
     }
-    
+
     if (!confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) return;
 
     axios.delete(`${API_PRODUCTS}/${id}`)
@@ -204,5 +217,4 @@ function deleteProduct(id) {
     });
 }
 
-// Gọi hàm hiển thị danh sách sản phẩm khi tải trang
 document.addEventListener("DOMContentLoaded", fetchCategories);

@@ -6,180 +6,385 @@
   <title>Danh Mục Sản Phẩm</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="bg-light">
   <div class="content-box p-4">
     <h3 class="text-center mb-4">Danh Sách Sản Phẩm</h3>
     <div class="card shadow-sm">
-        <div class="card-body">
-            <div class="d-flex justify-content-start mb-3">
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createProductModal">
-                    <i class="bi bi-plus-circle"></i> Thêm sản phẩm
-                </button>
-            </div>
-            <div class="table-responsive rounded overflow-hidden">
-                <table class="table table-striped table-hover text-center align-middle mb-0">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">STT</th>
-                            <th scope="col">Mã SP</th>
-                            <th scope="col">Hình Ảnh</th>
-                            <th scope="col">Tên</th>
-                            <th scope="col">Danh Mục</th>
-                            <th scope="col">Số Lượng</th>
-                            <th scope="col">Giá</th>
-                            <th scope="col">Giá KM</th>
-                            <th scope="col">Ngày Tạo</th>
-                            <th scope="col">Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody id="productList">
-                        <!-- Dữ liệu sản phẩm sẽ được tải từ API -->
-                    </tbody>
-                </table>
-            </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-start mb-3">
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createProductModal">
+            <i class="bi bi-plus-circle"></i> Thêm sản phẩm
+          </button>
         </div>
+        <div class="table-responsive rounded overflow-hidden">
+          <table class="table table-striped table-hover text-center align-middle mb-0">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã SP</th>
+                <th scope="col">Hình Ảnh</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Danh Mục</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Giá KM</th>
+                <th scope="col">Ngày Tạo</th>
+                <th scope="col">Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="productList">
+              <!-- Dữ liệu sản phẩm sẽ được tải từ API -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
-
-
-<!-- Modal Thêm Sản Phẩm -->
-<div class="modal fade" id="createProductModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title">Thêm sản phẩm</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-          </div>
-          <div class="modal-body">
-              <form id="productForm">
-                  <div class="mb-3">
-                      <label for="productId" class="form-label">Mã sản phẩm</label>
-                      <input type="text" class="form-control" id="productId">
-                  </div>
-
-                  <div class="mb-3">
-                      <label for="productTitle" class="form-label">Tên sản phẩm</label>
-                      <input type="text" class="form-control" id="productTitle">
-                  </div>
-
-                  <div class="mb-3">
-                      <label for="productDescription" class="form-label">Mô tả</label>
-                      <textarea class="form-control" id="productDescription"></textarea>
-                  </div>
-
-                  <div class="mb-3">
-                      <label for="productDetail" class="form-label">Chi tiết</label>
-                      <textarea class="form-control" id="productDetail"></textarea>
-                  </div>
-
-                  <div class="mb-3">
-                      <label for="productPrice" class="form-label">Giá</label>
-                      <input type="number" class="form-control" id="productPrice">
-                  </div>
-
-                  <div class="mb-3">
-                      <label for="productPriceSale" class="form-label">Giá khuyến mãi</label>
-                      <input type="number" class="form-control" id="productPriceSale">
-                  </div>
-
-                  <div class="mb-3">
-                      <label for="productQuantity" class="form-label">Số lượng</label>
-                      <input type="number" class="form-control" id="productQuantity">
-                  </div>
-
-                  <div class="mb-3">
-                      <label for="productImage" class="form-label">Hình ảnh</label>
-                      <input type="text" class="form-control" id="productImage">
-                  </div>
-
-                  <div class="mb-3">
-                      <label for="productCategory" class="form-label">Danh mục</label>
-                      <select class="form-select" id="productCategory"></select>
-                  </div>
-              </form>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-              <button type="button" class="btn btn-primary" onclick="addProduct()">Thêm</button>
-          </div>
-      </div>
   </div>
-</div>
 
-
-<!-- Modal Chỉnh Sửa Sản Phẩm -->
-<div class="modal fade" id="editProductModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
+  <!-- Modal Thêm Sản Phẩm -->
+  <div class="modal fade" id="createProductModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title">Chỉnh sửa sản phẩm</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-          </div>
-          <div class="modal-body">
-              <input type="hidden" id="editProductId">
-              
-              <div class="mb-3">
-                  <label for="editProductProductId" class="form-label">Mã sản phẩm</label>
-                  <input type="text" class="form-control" id="editProductProductId">
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductTitle" class="form-label">Tên sản phẩm</label>
-                  <input type="text" class="form-control" id="editProductTitle">
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductAlias" class="form-label">Alias</label>
-                  <input type="text" class="form-control" id="editProductAlias">
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductDescription" class="form-label">Mô tả</label>
-                  <textarea class="form-control" id="editProductDescription"></textarea>
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductDetail" class="form-label">Chi tiết</label>
-                  <textarea class="form-control" id="editProductDetail"></textarea>
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductPrice" class="form-label">Giá</label>
-                  <input type="number" class="form-control" id="editProductPrice">
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductPriceSale" class="form-label">Giá khuyến mãi</label>
-                  <input type="number" class="form-control" id="editProductPriceSale">
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductQuantity" class="form-label">Số lượng</label>
-                  <input type="number" class="form-control" id="editProductQuantity">
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductImage" class="form-label">Hình ảnh</label>
-                  <input type="text" class="form-control" id="editProductImage">
-              </div>
-
-              <div class="mb-3">
-                  <label for="editProductCategory" class="form-label">Danh mục</label>
-                  <select class="form-select" id="editProductCategory"></select>
-              </div>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-              <button type="button" class="btn btn-primary" onclick="saveUpdatedProduct()">Lưu</button>
-          </div>
+        <div class="modal-header">
+          <h5 class="modal-title">Thêm sản phẩm</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body">
+          <form id="productForm">
+            <div class="mb-3">
+              <label for="productProductId" class="form-label">Mã sản phẩm</label>
+              <input type="text" class="form-control" id="productProductId">
+            </div>
+            <div class="mb-3">
+              <label for="productTitle" class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="productTitle" required>
+            </div>
+            <div class="mb-3">
+              <label for="productDescription" class="form-label">Mô tả</label>
+              <textarea class="form-control" id="productDescription"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="productDetail" class="form-label">Chi tiết</label>
+              <textarea class="form-control" id="productDetail"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="productPrice" class="form-label">Giá <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" id="productPrice" required>
+            </div>
+            <div class="mb-3">
+              <label for="productPriceSale" class="form-label">Giá khuyến mãi</label>
+              <input type="number" class="form-control" id="productPriceSale">
+            </div>
+            <div class="mb-3">
+              <label for="productQuantity" class="form-label">Số lượng <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" id="productQuantity" required>
+            </div>
+            <div class="mb-3">
+              <label for="productImage" class="form-label">Hình ảnh</label>
+              <input type="text" class="form-control" id="productImage">
+            </div>
+            <div class="mb-3">
+              <label for="productCategory" class="form-label">Danh mục <span class="text-danger">*</span></label>
+              <select class="form-select" id="productCategory" required></select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary" onclick="addProduct()">Thêm</button>
+        </div>
       </div>
+    </div>
   </div>
-</div>
+
+  <!-- Modal Chỉnh Sửa Sản Phẩm -->
+  <div class="modal fade" id="editProductModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Chỉnh sửa sản phẩm</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editProductId">
+          <div class="mb-3">
+            <label for="editProductProductId" class="form-label">Mã sản phẩm</label>
+            <input type="text" class="form-control" id="editProductProductId">
+          </div>
+          <div class="mb-3">
+            <label for="editProductTitle" class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="editProductTitle" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductAlias" class="form-label">Alias</label>
+            <input type="text" class="form-control" id="editProductAlias">
+          </div>
+          <div class="mb-3">
+            <label for="editProductDescription" class="form-label">Mô tả</label>
+            <textarea class="form-control" id="editProductDescription"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="editProductDetail" class="form-label">Chi tiết</label>
+            <textarea class="form-control" id="editProductDetail"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="editProductPrice" class="form-label">Giá <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="editProductPrice" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductPriceSale" class="form-label">Giá khuyến mãi</label>
+            <input type="number" class="form-control" id="editProductPriceSale">
+          </div>
+          <div class="mb-3">
+            <label for="editProductQuantity" class="form-label">Số lượng <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="editProductQuantity" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductImage" class="form-label">Hình ảnh</label>
+            <input type="text" class="form-control" id="editProductImage">
+          </div>
+          <div class="mb-3">
+            <label for="editProductCategory" class="form-label">Danh mục <span class="text-danger">*</span></label>
+            <select class="form-select" id="editProductCategory" required></select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary" onclick="saveUpdatedProduct()">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/product.js"></script>
+  <!-- JavaScript -->
+  <script>
+    const API_PRODUCTS = "http://localhost:3000/products";
+    const API_CATEGORIES = "http://localhost:3000/product-categories";
+
+    let categoriesMap = {};
+
+    function populateCategories(selectElement, selectedId = null) {
+      selectElement.innerHTML = '<option value="">Chọn danh mục</option>';
+      for (const key in categoriesMap) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = categoriesMap[key];
+        if (key === selectedId) {
+          option.selected = true;
+        }
+        selectElement.appendChild(option);
+      }
+    }
+
+    function fetchCategories() {
+      axios.get(API_CATEGORIES)
+        .then(response => {
+          response.data.forEach(category => {
+            categoriesMap[category._id.$oid || category._id] = category.name;
+          });
+          const addCategorySelect = document.getElementById("productCategory");
+          if (addCategorySelect) {
+            populateCategories(addCategorySelect);
+          }
+          fetchProducts();
+        })
+        .catch(error => console.error("Lỗi khi tải danh mục:", error));
+    }
+
+    function fetchProducts() {
+      axios.get(API_PRODUCTS)
+        .then(response => {
+          const products = response.data;
+          const productList = document.getElementById("productList");
+          productList.innerHTML = "";
+
+          products.forEach((product, index) => {
+            const productId = product._id?.$oid || product._id;
+            const categoryId = product.product_categoryId?.$oid || product.product_categoryId;
+            const categoryName = categoriesMap[categoryId] || "Không xác định";
+            const createdAt = new Date(product.created_at?.$date || product.created_at).toLocaleString();
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${product.productId || "N/A"}</td>
+              <td><img src="${product.image}" alt="Ảnh" width="50" height="50"></td>
+              <td>${product.title}</td>
+              <td>${categoryName}</td>
+              <td>${product.quantity}</td>
+              <td>${product.price.toLocaleString()} đ</td>
+              <td>${product.price_sale.toLocaleString()} đ</td>
+              <td>${createdAt}</td>
+              <td>
+                <button class="btn btn-warning btn-sm" onclick="updateProduct('${productId}')">Sửa</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteProduct('${productId}')">Xóa</button>
+              </td>
+            `;
+            productList.appendChild(tr);
+          });
+        })
+        .catch(error => console.error("Lỗi khi tải sản phẩm:", error));
+    }
+
+    function slugify(text) {
+      return text.toString()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+    }
+
+    function addProduct() {
+      console.log("Nút Thêm sản phẩm được nhấn!");
+
+      const productId = document.getElementById("productProductId").value.trim();
+      const title = document.getElementById("productTitle").value.trim();
+      const description = document.getElementById("productDescription").value.trim();
+      const detail = document.getElementById("productDetail").value.trim();
+      const price = document.getElementById("productPrice").value;
+      const priceSale = document.getElementById("productPriceSale").value;
+      const quantity = document.getElementById("productQuantity").value;
+      const image = document.getElementById("productImage").value;
+      const categoryId = document.getElementById("productCategory").value;
+
+      console.log("Dữ liệu nhập:", { productId, title, description, detail, price, priceSale, quantity, image, categoryId });
+
+      if (!title || !price || !quantity || !categoryId) {
+        alert("Vui lòng nhập đầy đủ thông tin bắt buộc!");
+        console.log("Thiếu thông tin bắt buộc:", { title, price, quantity, categoryId });
+        return;
+      }
+
+      const alias = slugify(title);
+      const createdAt = new Date().toISOString();
+
+      const productData = {
+        productId,
+        title,
+        description,
+        detail,
+        alias,
+        price: Number(price),
+        price_sale: Number(priceSale) || Number(price),
+        quantity: Number(quantity),
+        image,
+        product_categoryId: categoryId,
+        created_at: { $date: createdAt }
+      };
+      console.log("Dữ liệu gửi lên API:", productData);
+
+      axios.post(API_PRODUCTS, productData, {
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(() => {
+        console.log("Thêm sản phẩm thành công!");
+        document.getElementById("productForm").reset();
+        fetchProducts();
+        bootstrap.Modal.getInstance(document.getElementById("createProductModal")).hide();
+      })
+      .catch(error => {
+        console.error("Lỗi khi thêm sản phẩm:", error);
+        alert("Lỗi khi thêm sản phẩm! Kiểm tra console để biết chi tiết.");
+      });
+    }
+
+    function updateProduct(id) {
+      axios.get(`${API_PRODUCTS}/${id}`)
+        .then(response => {
+          const product = response.data;
+          if (!product) {
+            alert("Không tìm thấy sản phẩm!");
+            return;
+          }
+
+          document.getElementById("editProductId").value = id;
+          document.getElementById("editProductProductId").value = product.productId || "";
+          document.getElementById("editProductTitle").value = product.title;
+          document.getElementById("editProductAlias").value = product.alias;
+          document.getElementById("editProductDescription").value = product.description || "";
+          document.getElementById("editProductDetail").value = product.detail || "";
+          document.getElementById("editProductPrice").value = product.price;
+          document.getElementById("editProductPriceSale").value = product.price_sale;
+          document.getElementById("editProductQuantity").value = product.quantity;
+          document.getElementById("editProductImage").value = product.image;
+
+          const categorySelect = document.getElementById("editProductCategory");
+          const categoryId = product.product_categoryId?.$oid || product.product_categoryId;
+          populateCategories(categorySelect, categoryId);
+
+          new bootstrap.Modal(document.getElementById("editProductModal")).show();
+        })
+        .catch(error => {
+          console.error(`Lỗi khi lấy sản phẩm ${id}:`, error);
+          alert("Lỗi khi tải dữ liệu sản phẩm!");
+        });
+    }
+
+    function saveUpdatedProduct() {
+      const id = document.getElementById("editProductId").value;
+      const productId = document.getElementById("editProductProductId").value.trim();
+      const newTitle = document.getElementById("editProductTitle").value.trim();
+      const newAlias = document.getElementById("editProductAlias").value.trim();
+      const newDescription = document.getElementById("editProductDescription").value.trim();
+      const newDetail = document.getElementById("editProductDetail").value.trim();
+      const newPrice = document.getElementById("editProductPrice").value;
+      const newPriceSale = document.getElementById("editProductPriceSale").value;
+      const newQuantity = document.getElementById("editProductQuantity").value;
+      const newImage = document.getElementById("editProductImage").value;
+      const newCategoryId = document.getElementById("editProductCategory").value;
+
+      if (!id || !newTitle) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+      }
+
+      axios.put(`${API_PRODUCTS}/${id}`, {
+        productId,
+        title: newTitle,
+        alias: newAlias,
+        description: newDescription,
+        detail: newDetail,
+        price: Number(newPrice),
+        price_sale: Number(newPriceSale) || Number(newPrice),
+        quantity: Number(newQuantity),
+        image: newImage,
+        product_categoryId: newCategoryId
+      })
+      .then(() => {
+        fetchProducts();
+        bootstrap.Modal.getInstance(document.getElementById("editProductModal")).hide();
+      })
+      .catch(error => console.error(`Lỗi khi cập nhật sản phẩm ${id}:`, error));
+    }
+
+    function deleteProduct(id) {
+      if (!id) {
+        console.error("Không có ID sản phẩm để xóa!");
+        return;
+      }
+
+      if (!confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) return;
+
+      axios.delete(`${API_PRODUCTS}/${id}`)
+      .then(() => fetchProducts())
+      .catch(error => {
+        console.error(`Lỗi khi xóa sản phẩm ${id}:`, error);
+        alert("Lỗi khi xóa sản phẩm! Kiểm tra console để biết chi tiết.");
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchCategories);
+  </script>
 </body>
 </html>
