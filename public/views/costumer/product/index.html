@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sản phẩm</title>
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product-item h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .product-item p {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .product-item a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .product-item a:hover {
+            text-decoration: underline;
+        }
+        .filter-bar {
+            padding: 10px 20px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .filter-bar select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="filter-bar">
+        <label for="categoryFilter">Danh mục:</label>
+        <select id="categoryFilter">
+            <option value="">Tất cả</option>
+            <!-- Danh mục sẽ được tải động -->
+        </select>
+        <label for="sortFilter">Sắp xếp:</label>
+        <select id="sortFilter">
+            <option value="default">Mặc định</option>
+            <option value="price-asc">Giá: Thấp đến Cao</option>
+            <option value="price-desc">Giá: Cao đến Thấp</option>
+            <option value="name-asc">Tên: A-Z</option>
+            <option value="name-desc">Tên: Z-A</option>
+        </select>
+    </div>
+    <div id="product-list" class="product-grid"></div>
+
+    <script>
+        // Lấy tham số từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+        const search = urlParams.get('search');
+
+        // Tải danh mục vào bộ lọc
+        function loadCategories() {
+            fetch('/product-categories')
+                .then(response => response.json())
+                .then(categories => {
+                    const categoryFilter = document.getElementById('categoryFilter');
+                    categories.forEach(cat => {
+                        const option = document.createElement('option');
+                        option.value = cat._id;
+                        option.textContent = cat.name;
+                        if (cat._id === category) {
+                            option.selected = true;
+                        }
+                        categoryFilter.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Lỗi khi tải danh mục:', error);
+                });
+        }
+
+        // Tải danh sách sản phẩm
+        function loadProducts() {
+            fetch('/products')
+                .then(response => response.json())
+                .then(products => {
+                    let filteredProducts = products;
+
+                    // Lọc theo danh mục
+                    const selectedCategory = document.getElementById('categoryFilter').value;
+                    if (selectedCategory) {
+                        filteredProducts = filteredProducts.filter(p => p.product_categoryId === selectedCategory);
+                    }
+
+                    // Lọc theo tìm kiếm
+                    if (search) {
+                        filteredProducts = filteredProducts.filter(p => p.title.toLowerCase().includes(search.toLowerCase()));
+                    }
+
+                    // Sắp xếp
+                    const sortOption = document.getElementById('sortFilter').value;
+                    if (sortOption === 'price-asc') {
+                        filteredProducts.sort((a, b) => a.price - b.price);
+                    } else if (sortOption === 'price-desc') {
+                        filteredProducts.sort((a, b) => b.price - a.price);
+                    } else if (sortOption === 'name-asc') {
+                        filteredProducts.sort((a, b) => a.title.localeCompare(b.title));
+                    } else if (sortOption === 'name-desc') {
+                        filteredProducts.sort((a, b) => b.title.localeCompare(a.title));
+                    }
+
+                    // Hiển thị sản phẩm
+                    const productList = document.getElementById('product-list');
+                    productList.innerHTML = filteredProducts.map(product => `
+                        <div class="product-item">
+                            <img src="${product.image || 'https://via.placeholder.com/150'}" alt="${product.title}">
+                            <h3>${product.title}</h3>
+                            <p>${product.price} VNĐ</p>
+                            <a href="/products/${product._id}">Xem chi tiết</a>
+                        </div>
+                    `).join('');
+                })
+                .catch(error => {
+                    document.getElementById('product-list').innerHTML = `<p>Lỗi: ${error.message}</p>`;
+                });
+        }
+
+        // Xử lý sự kiện thay đổi bộ lọc
+        document.getElementById('categoryFilter').addEventListener('change', loadProducts);
+        document.getElementById('sortFilter').addEventListener('change', loadProducts);
+
+        // Tải nội dung khi trang load
+        window.onload = () => {
+            loadCategories();
+            loadProducts();
+        };
+    </script>
+</body>
+</html>

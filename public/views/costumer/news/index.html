@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tin tức</title>
+    <style>
+        .news-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tin tức</h2>
+    <div id="news-list"></div>
+    <script>
+        fetch('/news')
+            .then(response => response.json())
+            .then(news => {
+                const newsList = document.getElementById('news-list');
+                newsList.innerHTML = news.map(item => `
+                    <div class="news-item">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <a href="/news/${item._id}">Đọc thêm</a>
+                    </div>
+                `).join('');
+            })
+            .catch(error => {
+                document.getElementById('news-list').innerHTML = `<p>Lỗi: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>

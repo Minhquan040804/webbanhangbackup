@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đơn hàng</title>
+    <style>
+        .order-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Đơn hàng của bạn</h2>
+    <div id="order-list"></div>
+    <script>
+        // Giả sử bạn đã đăng nhập và có id_user
+        const userId = "USER_ID_HERE"; // Thay bằng id_user thực tế
+        fetch(`/orders`)
+            .then(response => response.json())
+            .then(orders => {
+                const userOrders = orders.filter(order => order.id_user === userId);
+                const orderList = document.getElementById('order-list');
+                orderList.innerHTML = userOrders.map(order => `
+                    <div class="order-item">
+                        <h3>Đơn hàng #${order.orderId}</h3>
+                        <p>Tổng tiền: ${order.total_price} VNĐ</p>
+                        <p>Trạng thái: ${order.status}</p>
+                        <a href="/orders/${order._id}">Xem chi tiết</a>
+                    </div>
+                `).join('');
+            })
+            .catch(error => {
+                document.getElementById('order-list').innerHTML = `<p>Lỗi: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>     
