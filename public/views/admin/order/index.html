@@ -3,37 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản Lý Đơn Hàng</title>
+  <title>Quản Lý Tin Tức</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Axios để gọi API -->
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="bg-light">
-  <div class="content-box p-4">
-    <h3 class="text-center mb-4">Quản Lý Đơn Hàng</h3>
+  <div class="container p-4">
+    <h3 class="text-center mb-4">Quản Lý Tin Tức</h3>
+
+    <div class="d-flex justify-content-start mb-3">
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createNewsModal">
+        <i class="bi bi-plus-circle"></i> Thêm tin tức
+      </button>
+    </div>
+
     <div class="card shadow-sm">
       <div class="card-body">
-        <div class="d-flex justify-content-end mb-3">
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createOrderModal">
-            Thêm đơn hàng
-          </button>
-        </div>
-        <div class="table-responsive rounded overflow-hidden">
+        <div class="table-responsive">
           <table class="table table-striped table-hover text-center align-middle mb-0">
             <thead class="table-dark">
               <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Mã đơn hàng</th>
-                <th scope="col">Khách hàng</th>
-                <th scope="col">Tổng tiền</th>
-                <th scope="col">Trạng thái</th>
+                <th scope="col">Tiêu đề</th>
+                <th scope="col">Alias</th>
+                <th scope="col">Mô tả</th>
                 <th scope="col">Ngày tạo</th>
                 <th scope="col">Hành động</th>
               </tr>
             </thead>
-            <tbody id="orderList">
-              <!-- Dữ liệu đơn hàng sẽ được tải từ API -->
+            <tbody id="newsList">
+              <!-- Dữ liệu tin tức sẽ được tải từ API -->
             </tbody>
           </table>
         </div>
@@ -41,83 +44,82 @@
     </div>
   </div>
 
-  <!-- Modal tạo đơn hàng -->
-  <div class="modal fade" id="createOrderModal" tabindex="-1" aria-labelledby="createOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+  <!-- Modal Thêm Tin Tức -->
+  <div class="modal fade" id="createNewsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="createOrderModalLabel">Thêm đơn hàng mới</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title">Thêm tin tức</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <label for="orderUserId" class="form-label">ID khách hàng</label>
-            <input type="text" id="orderUserId" class="form-control" placeholder="Nhập ID khách hàng" required>
-          </div>
-          <div class="mb-3">
-            <label for="orderStatus" class="form-label">Trạng thái</label>
-            <select id="orderStatus" class="form-select">
-              <option value="pending">Chờ xử lý</option>
-              <option value="completed">Hoàn thành</option>
-              <option value="cancelled">Đã hủy</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="orderPaymentType" class="form-label">Phương thức thanh toán</label>
-            <input type="text" id="orderPaymentType" class="form-control" placeholder="Nhập phương thức thanh toán" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Sản phẩm</label>
-            <div id="productList" class="border p-2">
-              <div class="product-item mb-2">
-                <input type="text" class="form-control mb-1 product-id" placeholder="ID sản phẩm">
-                <input type="number" class="form-control product-quantity" placeholder="Số lượng" min="1">
-              </div>
+          <form id="newsForm">
+            <div class="mb-3">
+              <label for="newsTitle" class="form-label">Tiêu đề <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="newsTitle" required>
             </div>
-            <button type="button" class="btn btn-sm btn-primary mt-2" onclick="addProductField()">Thêm sản phẩm</button>
-          </div>
+            <div class="mb-3">
+              <label for="newsAlias" class="form-label">Alias <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="newsAlias" required>
+            </div>
+            <div class="mb-3">
+              <label for="newsDescription" class="form-label">Mô tả</label>
+              <textarea class="form-control" id="newsDescription" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="newsDetail" class="form-label">Chi tiết</label>
+              <textarea class="form-control" id="newsDetail" rows="5"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="newsImage" class="form-label">URL hình ảnh</label>
+              <input type="url" class="form-control" id="newsImage">
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-primary" onclick="addOrder()">Lưu</button>
+          <button type="button" class="btn btn-primary" onclick="addNews()">Thêm</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal chỉnh sửa đơn hàng -->
-  <div class="modal fade" id="editOrderModal" tabindex="-1" aria-labelledby="editOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+  <!-- Modal Chỉnh Sửa Tin Tức -->
+  <div class="modal fade" id="editNewsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editOrderModalLabel">Chỉnh sửa đơn hàng</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title">Chỉnh sửa tin tức</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
         </div>
         <div class="modal-body">
-          <input type="hidden" id="editOrderId">
-          <div class="mb-3">
-            <label for="editOrderStatus" class="form-label">Trạng thái</label>
-            <select id="editOrderStatus" class="form-select">
-              <option value="pending">Chờ xử lý</option>
-              <option value="completed">Hoàn thành</option>
-              <option value="cancelled">Đã hủy</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="editOrderPaymentType" class="form-label">Phương thức thanh toán</label>
-            <input type="text" id="editOrderPaymentType" class="form-control" placeholder="Nhập phương thức thanh toán" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Sản phẩm</label>
-            <div id="editProductList" class="border p-2">
-              <!-- Danh sách sản phẩm sẽ được thêm động -->
+          <form id="editNewsForm">
+            <input type="hidden" id="editNewsId">
+            <div class="mb-3">
+              <label for="editNewsTitle" class="form-label">Tiêu đề <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="editNewsTitle" required>
             </div>
-            <button type="button" class="btn btn-sm btn-primary mt-2" onclick="addEditProductField()">Thêm sản phẩm</button>
-          </div>
+            <div class="mb-3">
+              <label for="editNewsAlias" class="form-label">Alias <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="editNewsAlias" required>
+            </div>
+            <div class="mb-3">
+              <label for="editNewsDescription" class="form-label">Mô tả</label>
+              <textarea class="form-control" id="editNewsDescription" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="editNewsDetail" class="form-label">Chi tiết</label>
+              <textarea class="form-control" id="editNewsDetail" rows="5"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="editNewsImage" class="form-label">URL hình ảnh</label>
+              <input type="url" class="form-control" id="editNewsImage">
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-primary" onclick="saveUpdatedOrder()">Lưu</button>
+          <button type="button" class="btn btn-primary" onclick="saveUpdatedNews()">Lưu</button>
         </div>
       </div>
     </div>
@@ -125,6 +127,6 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/orders.js"></script>
+  <script src="/js/news.js"></script>
 </body>
 </html>

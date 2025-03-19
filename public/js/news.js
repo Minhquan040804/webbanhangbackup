@@ -1,5 +1,17 @@
-// URL của API dựa trên cấu hình server
 const API_URL = "http://localhost:3000/news";
+
+// Hàm tạo alias từ tiêu đề
+function generateAlias(title) {
+  // Chuyển thành chữ thường và loại bỏ dấu
+  let alias = title.toLowerCase()
+    .normalize("NFD") // Tách dấu ra khỏi chữ
+    .replace(/[\u0300-\u036f]/g, "") // Xóa dấu
+    .replace(/đ/g, "d") // Thay "đ" bằng "d"
+    .replace(/[^a-z0-9\s-]/g, "") // Xóa ký tự đặc biệt, chỉ giữ chữ, số, khoảng trắng và gạch nối
+    .trim() // Xóa khoảng trắng đầu cuối
+    .replace(/\s+/g, "-"); // Thay khoảng trắng bằng gạch nối
+  return alias;
+}
 
 // Hàm lấy danh sách tin tức từ API và hiển thị
 async function fetchNews() {
@@ -47,11 +59,7 @@ async function addNews() {
   try {
     await axios.post(API_URL, { title, alias, description, detail, image });
     alert("Thêm tin tức thành công!");
-    document.getElementById("newsTitle").value = "";
-    document.getElementById("newsAlias").value = "";
-    document.getElementById("newsDescription").value = "";
-    document.getElementById("newsDetail").value = "";
-    document.getElementById("newsImage").value = "";
+    document.getElementById("newsForm").reset();
     bootstrap.Modal.getInstance(document.getElementById("createNewsModal")).hide();
     fetchNews(); // Cập nhật danh sách
   } catch (error) {
@@ -120,5 +128,21 @@ async function deleteNews(id) {
   }
 }
 
-// Gọi hàm fetchNews khi trang được tải
-document.addEventListener("DOMContentLoaded", fetchNews);
+// Gắn sự kiện tự động điền alias khi nhập tiêu đề
+document.addEventListener("DOMContentLoaded", () => {
+  fetchNews();
+
+  // Modal thêm tin tức
+  const newsTitle = document.getElementById("newsTitle");
+  const newsAlias = document.getElementById("newsAlias");
+  newsTitle.addEventListener("input", () => {
+    newsAlias.value = generateAlias(newsTitle.value);
+  });
+
+  // Modal chỉnh sửa tin tức
+  const editNewsTitle = document.getElementById("editNewsTitle");
+  const editNewsAlias = document.getElementById("editNewsAlias");
+  editNewsTitle.addEventListener("input", () => {
+    editNewsAlias.value = generateAlias(editNewsTitle.value);
+  });
+});
