@@ -3,22 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản Lý Sản Phẩm</title>
+  <title>Danh Mục Sản Phẩm</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="bg-light">
   <div class="content-box p-4">
-<<<<<<< HEAD
-    <h3 class="text-center mb-4">Quản Lý Sản Phẩm</h3>
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <div class="d-flex justify-content-end mb-3">
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createProductModal">
-            Thêm sản phẩm
-          </button>
-=======
     <h3 class="text-center mb-4">Danh Sách Sản Phẩm</h3>
     <div class="card shadow-sm">
         <div class="card-body">
@@ -48,108 +39,11 @@
                     </tbody>
                 </table>
             </div>
->>>>>>> 5e10a45e287c1e9934a3e636085320a1ba6ebbed
         </div>
-        <div class="table-responsive rounded overflow-hidden">
-          <table class="table table-striped table-hover text-center align-middle mb-0">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Giá</th>
-                <th scope="col">Giá KM</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Danh mục</th>
-                <th scope="col">Hành động</th>
-              </tr>
-            </thead>
-            <tbody id="productList">
-              <!-- Dữ liệu sản phẩm sẽ được tải từ API -->
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <!-- Modal tạo sản phẩm -->
-  <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="createProductModalLabel">Thêm sản phẩm mới</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="productTitle" class="form-label">Tên sản phẩm</label>
-            <input type="text" id="productTitle" class="form-control" placeholder="Nhập tên sản phẩm">
-          </div>
-          <div class="mb-3">
-            <label for="productPrice" class="form-label">Giá</label>
-            <input type="number" id="productPrice" class="form-control" placeholder="Nhập giá">
-          </div>
-          <div class="mb-3">
-            <label for="productPriceSale" class="form-label">Giá khuyến mãi</label>
-            <input type="number" id="productPriceSale" class="form-control" placeholder="Nhập giá khuyến mãi (nếu có)">
-          </div>
-          <div class="mb-3">
-            <label for="productQuantity" class="form-label">Số lượng</label>
-            <input type="number" id="productQuantity" class="form-control" placeholder="Nhập số lượng">
-          </div>
-          <div class="mb-3">
-            <label for="productCategoryId" class="form-label">ID danh mục</label>
-            <input type="text" id="productCategoryId" class="form-control" placeholder="Nhập ID danh mục">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-primary" onclick="window.addProduct()">Lưu</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-<<<<<<< HEAD
-  <!-- Modal chỉnh sửa sản phẩm -->
-  <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editProductModalLabel">Chỉnh sửa sản phẩm</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" id="editProductId">
-          <div class="mb-3">
-            <label for="editProductTitle" class="form-label">Tên sản phẩm</label>
-            <input type="text" id="editProductTitle" class="form-control" placeholder="Nhập tên sản phẩm">
-          </div>
-          <div class="mb-3">
-            <label for="editProductPrice" class="form-label">Giá</label>
-            <input type="number" id="editProductPrice" class="form-control" placeholder="Nhập giá">
-          </div>
-          <div class="mb-3">
-            <label for="editProductPriceSale" class="form-label">Giá khuyến mãi</label>
-            <input type="number" id="editProductPriceSale" class="form-control" placeholder="Nhập giá khuyến mãi (nếu có)">
-          </div>
-          <div class="mb-3">
-            <label for="editProductQuantity" class="form-label">Số lượng</label>
-            <input type="number" id="editProductQuantity" class="form-control" placeholder="Nhập số lượng">
-          </div>
-          <div class="mb-3">
-            <label for="editProductCategoryId" class="form-label">ID danh mục</label>
-            <input type="text" id="editProductCategoryId" class="form-control" placeholder="Nhập ID danh mục">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-primary" onclick="window.saveUpdatedProduct()">Lưu</button>
-        </div>
-      </div>
-    </div>
-  </div>
-=======
 <!-- Modal Thêm Sản Phẩm -->
 <div class="modal fade" id="createProductModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
@@ -283,11 +177,9 @@
       </div>
   </div>
 </div>
->>>>>>> 5e10a45e287c1e9934a3e636085320a1ba6ebbed
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Import JS module -->
-  <script type="module" src="/js/products/main.js"></script>
+  <script src="/js/product.js"></script>
 </body>
 </html>
