@@ -7,6 +7,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'public/views'));
+
 app.use(express.json());
 const cors = require("cors");
 app.use(cors({
@@ -38,6 +41,18 @@ app.use('/accounts', userAccountRoutes);
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/views/layout_admin.html'));
 });
+
+/// Route cho layout_user với trang chủ mặc định là home
+app.get('/', (req, res) => {
+    res.render('layout_user', { title: 'Trang Chủ', page: 'customer/home/index' });
+});
+
+// Route cho trang home
+app.get('/home', (req, res) => {
+    res.render('layout_user', { title: 'Trang Chủ', page: 'customer/home/index' });
+});
+
+
 
 connectDB().then(() => {
     app.listen(port, () => {
