@@ -268,7 +268,7 @@ body {
     flex-wrap: wrap; /* Cho phép xuống dòng */
 }
 
-.category-1, .category-2 {
+.product-row {
     max-width: 1200px;
     margin: 0 auto;
     border-bottom: 1px solid #ddd;
@@ -312,7 +312,6 @@ body {
 
 .info-product:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transform: translateY(-5px); /* Nâng lên khi hover */
 }
 
 .img-product {
@@ -357,7 +356,7 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
@@ -373,7 +372,7 @@ body {
 .post-container {
     max-width: 1170px;
     margin: 0 auto;
-    margin-bottom: 150px;
+    margin-bottom: 100px;
     display: flex;
     flex-wrap: wrap; /* Cho phép các bài viết xuống dòng */
     justify-content: space-between; /* Khoảng cách giữa các bài viết */
@@ -395,6 +394,10 @@ body {
 
 .review-item:hover {
     transform: translateY(-5px); /* Nâng lên khi hover */
+}
+
+.review-item {
+    cursor: pointer;
 }
 
 .post-img img {
