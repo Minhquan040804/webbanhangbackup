@@ -51,7 +51,6 @@ body {
     display: flex;
     justify-content: space-between; /* Align items horizontally */
     align-items: center;
-    height: 70px;
     background-color: #ffffff;
     padding: 15px 300px; /* Consistent padding */
 }

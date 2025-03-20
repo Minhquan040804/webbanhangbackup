@@ -1,212 +1,171 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mua bán sách truyện trực tuyến với hàng ngàn đầu sách đa dạng, dễ dàng tìm kiếm và đặt hàng trực tiếp.">
-    <meta name="keywords" content="bán sách online, sách giáo khoa, truyện tranh Nhật Bản, sách thiếu nhi, truyện hot, tiểu thuyết">
-    <link rel="stylesheet" href="../user/styles.css"> <!-- Đường dẫn đến CSS trong public/user/css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
-    <title>Mua Sách & Truyện Online - Truyện Tranh, Tiểu Thuyết, Sách Giáo Dục</title>
-</head>
-<body>
-    <div class="app">
-        <header class="header">
-            <div class="top">
-                <div class="left">HOTLINE: 0984 0249 901</div>
-                <div class="right">
-                    <a href="/register" class="register">Đăng ký</a>
-                    <div class="separator">|</div>
-                    <a href="/login" class="login">Đăng nhập</a>
-                </div>
-            </div>
-            <div class="mid">
-                <div class="logo">
-                    <a href="/">
-                        <img src="https://a.storyblok.com/f/178900/960x417/1c74214dac/jnc-logo-resize.jpg/m/filters:quality(95)format(webp)" alt="Logo">
-                    </a>
-                </div>
-                <div class="search">
-                    <input type="text" id="searchInput" placeholder="Tìm kiếm...">
-                    <button type="submit" id="searchButton">
-                        <i class="fa-regular fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <div class="cart">
-                    <a href="/cart">
-                        <i class="fa-light fa-cart-shopping"></i>
-                        <span>Giỏ hàng</span>
-                    </a>
-                </div>
-            </div>
-            <nav>
-                <div class="header__navbar">
-                    <ul class="header__navbar-list">
-                        <li class="header__navbar-item">
-                            <a href="/" class="header__navbar-item-link" title="Trang chủ">
-                                <span>TRANG CHỦ</span>
-                            </a>
-                        </li>
-                        <li class="header__navbar-item dropdown">
-                            <a href="/products" class="header__navbar-item-link" title="Sản phẩm">
-                                <span>SẢN PHẨM</span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" id="categoryMenu">
-                                <!-- Danh mục sản phẩm sẽ được tải động từ API -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Mua bán sách truyện trực tuyến với hàng ngàn đầu sách đa dạng, dễ dàng tìm kiếm và đặt hàng trực tiếp.">
+        <meta name="keywords" content="bán sách online, sách giáo khoa, truyện tranh Nhật Bản, sách thiếu nhi, truyện hot, tiểu thuyết">
+        <link rel="stylesheet" href="../user/styles.css">
+        <link rel="stylesheet" href="../user/script.js">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <title>Mua Sách & Truyện Online - Truyện Tranh, Tiểu Thuyết, Sách Giáo Dục</title>
+    </head>
+    <body class="font-roboto">
+        <div class="app">
+
+            <div class="app">
+                <header class="header">
+                    <div class="top">
+                        <div class="left">NHÀ XUẤT BẢN VÀ TRUYỀN THÔNG PMQ</div>
+                        <div class="right">
+                            <span class="register">Đăng ký</span>
+                            <div class="separator">|</div>
+                            <span class="login">Đăng nhập</span>
+                        </div>
+                    </div>
+                        <div class="mid">
+                            <div class="logo">
+                                <a href="">
+                                    <img src="https://a.storyblok.com/f/178900/960x417/1c74214dac/jnc-logo-resize.jpg/m/filters:quality(95)format(webp)" alt="">
+                                </a>
+                            </div>
+                            <div class="search">
+                                <input type="text" placeholder="Tìm kiếm...">
+                                <button type="submit">
+                                    <i class="fa-regular fa-magnifying-glass"></i>
+                                </button>
+                            </div>
+                            <div class="cart">
+                                <a href="">
+                                    <i class="fa-light fa-cart-shopping"></i>
+                                    <span>Giỏ hàng</span>
+                                </a>
+                            </div>
+                        </div>
+                    <nav>
+                        <div class="header__navbar">
+                            <ul class="header__navbar-list">
+                                <li class="header__navbar-item">
+                                    <a href="" class="header__navbar-item-link" title="Trang chủ">
+                                        <span>TRANG CHỦ</span>
+                                    </a>
+                                </li>
+                                <li class="header__navbar-item dropdown">
+                                    <a href="" class="header__navbar-item-link" title="Sản phẩm">
+                                        <span>SẢN PHẨM</span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="/collections/sach-trinh-tham-kinh-di" title="Trinh Thám - Kinh Dị">Trinh Thám - Kinh Dị</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/light-novel" title="Light Novel">Light Novel</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/van-hoc-truyen-tranh-viet-nam" title="Văn Học - Truyện Tranh Việt Nam">Văn Học - Truyện Tranh Việt Nam</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/van-hoc-hien-dai" title="Văn Học Hiện Đại">Văn Học Hiện Đại</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/van-hoc-kinh-dien" title="Văn Học Kinh Điển">Văn Học Kinh Điển</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/manga-comic" title="Manga - Comic">Manga - Comic</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/fantasy" title="Fantasy">Fantasy</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/sach-hoc-ngu" title="Sách Học Ngữ">Sách Học Ngữ</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/sach-thieu-nhi" title="Sách Thiếu Nhi">Sách Thiếu Nhi</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/phu-kien" title="Phụ Kiện">Phụ Kiện</a>
+                                        </li>
+                                        <li>
+                                            <a href="/collections/combo-sach" title="Combo Sách">Combo Sách</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="header__navbar-item">
+                                    <a href="" class="header__navbar-item-link" title="Tin tức">
+                                        <span>TIN TỨC</span>
+                                    </a>
+                                </li>
+                                <li class="header__navbar-item">
+                                    <a href="" class="header__navbar-item-link" title="Liên hệ">
+                                        <span>LIÊN HỆ</span>
+                                    </a>
+                                </li>
                             </ul>
-                        </li>
-                        <li class="header__navbar-item">
-                            <a href="/news" class="header__navbar-item-link" title="Tin tức">
-                                <span>TIN TỨC</span>
-                            </a>
-                        </li>
-                        <li class="header__navbar-item">
-                            <a href="/contact" class="header__navbar-item-link" title="Liên hệ">
-                                <span>LIÊN HỆ</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+                        </div>
+                    </nav>
+                </header>
 
-        <div class="container">
-            <div class="slideshow-container">
-                <div class="mySlides">
-                    <img class="slideshow-image" src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t1.6435-9/52287133_1922174034571749_7892841514160619520_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=2a1932&_nc_eui2=AeFF3DL6rVdvFKfnli1LUS13JyPmNpDDRFAnI-Y2kMNEUFbc1bAJKEU49pC5F2z4mED2VCwB6Fv9nD0-ZtkeMMJx&_nc_ohc=qI8mjDVQyjkQ7kNvgFNOD02&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=AK-Q9XBBDke84jz1CKr2mIW&oh=00_AYBT9iHaazaawKtyGB4eeju7x9GQaj4VL1y8EK8u7JHbJQ&oe=67406D87" alt="Slide 1">
+            <div class="container">
+                <div class="slideshow-container">
+                    <div class="mySlides">
+                        <img class="slideshow-image" src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t1.6435-9/52287133_1922174034571749_7892841514160619520_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=2a1932&_nc_eui2=AeFF3DL6rVdvFKfnli1LUS13JyPmNpDDRFAnI-Y2kMNEUFbc1bAJKEU49pC5F2z4mED2VCwB6Fv9nD0-ZtkeMMJx&_nc_ohc=qI8mjDVQyjkQ7kNvgFNOD02&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=AK-Q9XBBDke84jz1CKr2mIW&oh=00_AYBT9iHaazaawKtyGB4eeju7x9GQaj4VL1y8EK8u7JHbJQ&oe=67406D87" alt="Slide 1">
+                    </div>
+                    <div class="mySlides">
+                        <img class="slideshow-image" src="https://theme.hstatic.net/200000287623/1000948667/14/slideshow_2.jpg?v=461" alt="Slide 2">
+                    </div>
+                    <div class="mySlides">
+                        <img class="slideshow-image" src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/313302108_485391303634119_6337434444619792500_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeEpzx-c5VpurknNN-WSxW6RNpJT5lNV7s02klPmU1XuzQFGRzojwvwzKoPrp-dVxyr1IYruwAmQ2_vXg8YRAu2W&_nc_ohc=eRxz55vilLYQ7kNvgESQtiw&_nc_zt=23&_nc_ht=scontent.fsgn2-7.fna&_nc_gid=A2DLwQ6xb8kU4ZB7WtaM-FA&oh=00_AYBpzAbuxBQktz2u-EePpMBn6j-UAgmcILlSJO2IaUXQ2Q&oe=671ED723" alt="Slide 3">
+                    </div>
+            
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-                <div class="mySlides">
-                    <img class="slideshow-image" src="https://theme.hstatic.net/200000287623/1000948667/14/slideshow_2.jpg?v=461" alt="Slide 2">
+                <div class="content">
+
+
                 </div>
-                <div class="mySlides">
-                    <img class="slideshow-image" src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/313302108_485391303634119_6337434444619792500_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeEpzx-c5VpurknNN-WSxW6RNpJT5lNV7s02klPmU1XuzQFGRzojwvwzKoPrp-dVxyr1IYruwAmQ2_vXg8YRAu2W&_nc_ohc=eRxz55vilLYQ7kNvgESQtiw&_nc_zt=23&_nc_ht=scontent.fsgn2-7.fna&_nc_gid=A2DLwQ6xb8kU4ZB7WtaM-FA&oh=00_AYBpzAbuxBQktz2u-EePpMBn6j-UAgmcILlSJO2IaUXQ2Q&oe=671ED723" alt="Slide 3">
-                </div>
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
             </div>
-            <div class="content">
-                <iframe id="contentFrame" src="/views/customer/home/index.html" frameborder="0" style="width: 100%; min-height: 600px;"></iframe>
-            </div>
+
+            <footer class="bg-[#313131] text-white py-12">
+                <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">HỖ TRỢ KHÁCH HÀNG</h4>
+                        <ul>
+                            <li class="mb-2"><a href="#" class="hover:underline">Câu hỏi thường gặp</a></li>
+                            <li class="mb-2"><a href="#" class="hover:underline">Điều khoản dịch vụ</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">CHÍNH SÁCH</h4>
+                        <ul>
+                            <li class="mb-2"><a href="#" class="hover:underline">Chính sách bảo mật</a></li>
+                            <li class="mb-2"><a href="#" class="hover:underline">Chính sách đổi trả</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">THÔNG TIN LIÊN HỆ</h4>
+                        <ul>
+                            <li class="mb-2"><i class="fas fa-phone-alt mr-2"></i>Hotline: 0984 0249 901</li>
+                            <li class="mb-2"><i class="fas fa-envelope mr-2"></i>Email: 1150080154@sv.hcmunre.edu.vn</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">ĐĂNG KÝ NHẬN TIN</h4>
+                        <form class="flex flex-col">
+                            <input type="email" class="p-2 mb-4 rounded bg-white border border-gray-700 placeholder-gray-500 text-black" placeholder="Nhập email của bạn">
+                            <button class="p-2 rounded bg-blue-600 hover:bg-blue-700 transition duration-300">ĐĂNG KÝ</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container mx-auto px-4 mt-8 border-t border-gray-700 pt-4 text-center">
+                    <p class="text-sm">&copy; 2023 Your Company. All rights reserved.</p>
+                </div>
+            </footer>
+
         </div>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h4>HỖ TRỢ KHÁCH HÀNG</h4>
-                    <p><a href="/support/faq">Câu hỏi thường gặp</a></p>
-                    <p><a href="/support/terms">Điều khoản dịch vụ</a></p>
-                </div>
-                <div class="footer-info">
-                    <h4>CHÍNH SÁCH</h4>
-                    <p><a href="/policy/privacy">Chính sách bảo mật</a></p>
-                    <p><a href="/policy/returns">Chính sách đổi trả</a></p>
-                </div>
-                <div class="footer-info">
-                    <h4>THÔNG TIN LIÊN HỆ</h4>
-                    <p>Hotline: 0984 0249 901</p>
-                    <p>Email: <a href="mailto:1150080154@sv.hcmunre.edu.vn">1150080154@sv.hcmunre.edu.vn</a></p>
-                </div>
-                <div class="footer-info">
-                    <h4>ĐĂNG KÝ NHẬN TIN</h4>
-                    <input type="email" class="email-input" placeholder="Nhập email của bạn">
-                    <button class="submit-button">ĐĂNG KÝ</button>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script src="../user/script.js"></script> <!-- Đường dẫn đến JS trong public/user/js -->
-    <script>
-        // Slideshow
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        setInterval(() => {
-            plusSlides(1);
-        }, 3000);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            const slides = document.getElementsByClassName("mySlides");
-            
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            
-            for (i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("show");
-                slides[i].style.opacity = 0;
-            }
-            
-            setTimeout(() => {
-                slides[slideIndex - 1].classList.add("show");
-                slides[slideIndex - 1].style.opacity = 1;
-            }, 100);
-        }
-
-        // Tải danh mục sản phẩm
-        function loadCategories() {
-            fetch('/product-categories')
-                .then(response => response.json())
-                .then(categories => {
-                    const categoryMenu = document.getElementById('categoryMenu');
-                    categoryMenu.innerHTML = categories.map(category => `
-                        <li>
-                            <a href="/products?category=${category._id}" title="${category.name}">${category.name}</a>
-                        </li>
-                    `).join('');
-                })
-                .catch(error => {
-                    console.error('Lỗi khi tải danh mục:', error);
-                });
-        }
-
-        // Tìm kiếm sản phẩm
-        document.getElementById('searchButton').addEventListener('click', () => {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-                window.location.href = `/products?search=${encodeURIComponent(query)}`;
-            }
-        });
-
-        // Xử lý điều hướng
-        document.querySelectorAll('.header__navbar-item-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const href = link.getAttribute('href');
-                const contentFrame = document.getElementById('contentFrame');
-                switch (href) {
-                    case '/':
-                        contentFrame.src = '/views/customer/home/index.html';
-                        break;
-                    case '/products':
-                        contentFrame.src = '/views/customer/products/index.html';
-                        break;
-                    case '/news':
-                        contentFrame.src = '/views/customer/news/index.html';
-                        break;
-                    case '/cart':
-                        contentFrame.src = '/views/customer/cart/index.html';
-                        break;
-                    case '/contact':
-                        contentFrame.src = '/views/customer/contact/index.html';
-                        break;
-                }
-            });
-        });
-
-        // Tải nội dung khi trang load
-        window.onload = () => {
-            loadCategories();
-        };
-    </script>
-</body>
+    </body>
 </html>

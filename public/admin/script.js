@@ -93,3 +93,37 @@ function loadContent(page) {
     }
 }
 
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Tự động chuyển ảnh mỗi 3 giây
+setInterval(() => {
+    plusSlides(1);
+}, 3000); // 3000 ms = 3 giây
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    let i;
+    const slides = document.getElementsByClassName("mySlides");
+    
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    
+    for (i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("show"); // Xóa lớp show
+        slides[i].style.opacity = 0; // Đặt opacity về 0 trước khi hiển thị slide mới
+    }
+    
+    // Sử dụng setTimeout để thêm lớp show sau khi opacity đã được đặt về 0
+    setTimeout(() => {
+        slides[slideIndex - 1].classList.add("show"); // Thêm lớp show
+        slides[slideIndex - 1].style.opacity = 1; // Đặt opacity thành 1
+    }, 100); // Thay đổi thời gian chờ nếu cần
+}

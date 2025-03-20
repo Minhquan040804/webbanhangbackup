@@ -208,6 +208,7 @@
     line-height: 1.6;
   }
   
+  
   /* Mobile Responsive */
   @media (max-width: 768px) {
     .sidebar {
