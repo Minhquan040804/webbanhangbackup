@@ -44,14 +44,29 @@ app.get('/admin', (req, res) => {
 
 /// Route cho layout_user với trang chủ mặc định là home
 app.get('/', (req, res) => {
-    res.render('layout_user', { title: 'Trang Chủ', page: 'customer/home/index' });
+    res.render('layout_user', {
+        title: 'Trang Chủ',
+        page: 'customer/home/index',
+        cssFiles: ['styles.css']
+    });
 });
 
 // Route cho trang home
 app.get('/home', (req, res) => {
-    res.render('layout_user', { title: 'Trang Chủ', page: 'customer/home/index' });
+    res.render('layout_user', {
+        title: 'Trang Chủ',
+        page: 'customer/home/index',
+        cssFiles: ['styles.css']
+    });
 });
 
+app.get('/product', (req, res) => {
+    res.render('layout_user', { 
+        title: 'Sản Phẩm', 
+        page: 'customer/product/index',
+        cssFiles: ['styles.css', 'product.css']  // Sử dụng cả hai file CSS
+    });
+});
 
 
 connectDB().then(() => {

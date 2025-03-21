@@ -5,7 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Mua bán sách truyện trực tuyến với hàng ngàn đầu sách đa dạng, dễ dàng tìm kiếm và đặt hàng trực tiếp.">
         <meta name="keywords" content="bán sách online, sách giáo khoa, truyện tranh Nhật Bản, sách thiếu nhi, truyện hot, tiểu thuyết">
-        <link rel="stylesheet" href="../user/styles.css">
+        <% if (cssFiles && Array.isArray(cssFiles)) { %>
+            <% cssFiles.forEach(function(file) { %>
+                <link rel="stylesheet" href="/user/<%= file %>">
+            <% }); %>
+        <% } %>
+        
         <link rel="stylesheet" href="../user/output.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
@@ -50,49 +55,14 @@
                     <div class="header__navbar">
                         <ul class="header__navbar-list">
                             <li class="header__navbar-item">
-                                <a href="" class="header__navbar-item-link" title="Trang chủ">
+                                <a href="/home" class="header__navbar-item-link" title="Trang chủ">
                                     <span>TRANG CHỦ</span>
                                 </a>
                             </li>
                             <li class="header__navbar-item dropdown">
-                                <a href="" class="header__navbar-item-link" title="Sản phẩm">
+                                <a href="/product" class="header__navbar-item-link" title="Sản phẩm">
                                     <span>SẢN PHẨM</span>
                                 </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="/collections/sach-trinh-tham-kinh-di" title="Trinh Thám - Kinh Dị">Trinh Thám - Kinh Dị</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/light-novel" title="Light Novel">Light Novel</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/van-hoc-truyen-tranh-viet-nam" title="Văn Học - Truyện Tranh Việt Nam">Văn Học - Truyện Tranh Việt Nam</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/van-hoc-hien-dai" title="Văn Học Hiện Đại">Văn Học Hiện Đại</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/van-hoc-kinh-dien" title="Văn Học Kinh Điển">Văn Học Kinh Điển</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/manga-comic" title="Manga - Comic">Manga - Comic</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/fantasy" title="Fantasy">Fantasy</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/sach-hoc-ngu" title="Sách Học Ngữ">Sách Học Ngữ</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/sach-thieu-nhi" title="Sách Thiếu Nhi">Sách Thiếu Nhi</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/phu-kien" title="Phụ Kiện">Phụ Kiện</a>
-                                    </li>
-                                    <li>
-                                        <a href="/collections/combo-sach" title="Combo Sách">Combo Sách</a>
-                                    </li>
-                                </ul>
                             </li>
                             <li class="header__navbar-item">
                                 <a href="" class="header__navbar-item-link" title="Tin tức">
