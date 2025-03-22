@@ -380,9 +380,11 @@ body {
 
 .product-row {
     margin: 0 auto;
+    width: 100%;
     border-bottom: 1px solid #ddd;
     display: block;
     justify-items: center;
+    overflow-x: auto;
 }
 
 .product {
@@ -458,6 +460,16 @@ body {
 .grid_sorting_button:hover {
     color: #007bff;
 }
+
+.row.mb-8 {
+    max-width: 100%; /* Giới hạn chiều rộng của row */
+    overflow-x: hidden; /* Nếu không muốn cuộn ngang trên toàn bộ row */
+}
+.new_arrivals_sorting {
+    overflow-x: auto;
+    width: 100%;
+}
+
 .more {
     display: inline-block;
     background-color: #007bff;
@@ -475,12 +487,9 @@ body {
     background-color: #599fe9;
 }
 
-.space {
-    height: 50px;
-}
 
 .post-container {
-    max-width: 1170px;
+    max-width: 1200px;
     margin: 0 auto;
     margin-bottom: 100px;
     display: flex;
@@ -540,13 +549,8 @@ body {
 /* Responsive styles */
 @media (max-width: 768px) {
     .owl-item {
-        flex: 1 1 calc(50% - 20px); /* Hai cột trên màn hình nhỏ */
-    }
-}
-
-@media (max-width: 480px) {
-    .owl-item {
-        flex: 1 1 100%; /* Một cột trên màn hình rất nhỏ */
+        margin: 20px;
+        flex: 1 1 100%;
     }
 }
 
