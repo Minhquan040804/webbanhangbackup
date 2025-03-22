@@ -4,11 +4,11 @@
     padding: 20px 0;
 }
 
-.container {
+.my-container {
     margin: auto;
     margin-top: 20px;
     padding: 0 15px;
-    max-width: 1250px;
+    max-width: 1301px;
 }
 
 .breadcrumb {
@@ -48,14 +48,13 @@
     padding: 5px 10px;
 }
 
-.content-collection {
-    width: 100%; /* Đảm bảo content-collection chiếm toàn bộ chiều rộng */
-    max-width: 1300px; /* Đặt max-width nếu có */
+.content {
     margin: 0 auto; /* Căn giữa nếu cần */
+    padding: 0;
 }
 
 .row {
-    width: 1300px;
+    width: 100%;
     max-width: inherit; /* Kế thừa max-width từ content-collection */
     margin: 0 auto; /* Căn giữa nếu content-collection cũng căn giữa */
     display: flex;         /* Hiển thị các phần tử con theo hàng ngang */
@@ -70,6 +69,25 @@
     width: 20%;
     margin: 0;
     padding: 15px 0 15px 30px;
+}
+
+@media (max-width: 1200px) {
+    .menu-category {
+        display: none;
+    }
+
+    .content-collection {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 589px) {
+    .product-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 }
 
 li a.list-item{
@@ -121,14 +139,35 @@ li:not(:first-child) a.list-item {
 }
 
 .product-content {
-    display: flex;  /* Đảm bảo phần tử hiển thị */
-    flex-wrap: wrap;
-    width: 100%;     /* Chiếm toàn bộ chiều rộng */
-    padding: 20px 25px;   /* Thêm padding để không bị dính mép */
-    background: #fff; /* Màu nền để dễ nhìn */
-    min-height: auto; /* Đảm bảo không bị ép về chiều cao 0 */
+    display: grid; /* Sử dụng grid để sắp xếp các phần tử */
+    grid-template-columns: repeat(4, 225px); /* Tạo 4 cột, mỗi cột có chiều rộng là 225px */
+    gap: 0; /* Không có khoảng cách giữa các phần tử */
+    justify-content: center; /* Căn giữa các phần tử trong khung */
+    padding: 20px 25px; /* Thêm padding nếu cần */
+    background: #fff; /* Màu nền */
+}
+@media (max-width: 1024px) {
+    .product-content {
+        grid-template-columns: repeat(3, 225px); /* 3 cột nếu màn hình nhỏ hơn 1024px */
+    }
 }
 
+@media (max-width: 768px) {
+    .sort-label {
+        display: none;
+    }
+    .product-content {
+        grid-template-columns: repeat(2, 225px); /* 2 cột nếu màn hình nhỏ hơn 768px */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-content {
+        grid-template-columns: 1fr; /* 1 cột nếu màn hình nhỏ hơn 480px */
+        justify-items: center; /* Căn giữa các phần tử theo chiều ngang */
+        align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    }
+}
 
 .title-category {
     flex: 1; /* Chiếm phần không gian hợp lý */

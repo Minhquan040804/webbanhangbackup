@@ -12,21 +12,55 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.querySelector(".mobile-menu");
     const closeMenu = document.querySelector(".close-menu");
+    const productLink = document.getElementById("product-link");
+    const categorySubmenu = document.querySelector(".category-submenu");
+    const closeSubmenu = document.querySelector(".close-submenu");
 
-    // Khi click vào menu toggle (3 gạch ngang)
+    // Hiển thị menu mobile
     menuToggle.addEventListener("click", function () {
-        mobileMenu.classList.add("active"); // Hiện menu từ trái
+        mobileMenu.classList.add("active");
     });
 
-    // Khi click vào nút đóng menu
+    // Đóng menu mobile khi nhấn vào nút đóng
     closeMenu.addEventListener("click", function () {
-        mobileMenu.classList.remove("active"); // Ẩn menu về trái
+        mobileMenu.classList.remove("active");
+        categorySubmenu.classList.remove("active"); // Đóng luôn submenu
     });
 
-    // Click bên ngoài menu để đóng
+    // Hiển thị submenu khi nhấn vào "SẢN PHẨM"
+    productLink.addEventListener("click", function (event) {
+        event.stopPropagation(); // Ngăn chặn sự kiện lan ra ngoài
+        event.preventDefault(); // Ngăn tải lại trang
+        categorySubmenu.classList.toggle("active");
+    });
+
+    // Đóng submenu khi nhấn vào nút đóng submenu
+    if (closeSubmenu) {
+        closeSubmenu.addEventListener("click", function (event) {
+            event.stopPropagation(); // Ngăn chặn sự kiện lan ra ngoài
+            categorySubmenu.classList.remove("active");
+        });
+    }
+
+    // Click bên ngoài submenu để đóng chỉ submenu
     document.addEventListener("click", function (event) {
-        if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+        if (
+            categorySubmenu.classList.contains("active") &&
+            !categorySubmenu.contains(event.target) &&
+            event.target !== productLink
+        ) {
+            categorySubmenu.classList.remove("active");
+            return; // Dừng lại, không tiếp tục đóng menu chính
+        }
+
+        // Nếu menu chính đang mở nhưng nhấn ngoài menu chính & submenu -> Đóng menu chính
+        if (
+            mobileMenu.classList.contains("active") &&
+            !mobileMenu.contains(event.target) &&
+            !menuToggle.contains(event.target)
+        ) {
             mobileMenu.classList.remove("active");
         }
     });
 });
+
