@@ -1,162 +1,162 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
-            .main-content-wrapper {
-                margin: auto;
-                padding: 20px 0;
-            }
+.main-content-wrapper {
+    margin: auto;
+    padding: 20px 0;
+}
 
-            .container {
-                margin: auto;
-                margin-top: 20px;
-                padding: 0 15px;
-                max-width: 1250px;
-            }
-            
-            .breadcrumb {
-                display: flex;
-                list-style: none;
-                padding: 10px 0;
-                margin: 0;
-                background: none;
-            }
+.container {
+    margin: auto;
+    margin-top: 20px;
+    padding: 0 15px;
+    max-width: 1250px;
+}
 
-            .breadcrumb li {
-                display: flex;
-                align-items: center;
-            }
+.breadcrumb {
+    display: flex;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    background: none;
+}
 
-            .breadcrumb li a {
-                text-decoration: none;
-                color: #007bff;
-                padding: 5px 10px;
-            }
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
 
-            .breadcrumb li a:hover {
-                text-decoration: none;
-            }
+.breadcrumb li a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 10px;
+}
 
-            .breadcrumb li::after {
-                content: "/";
-                padding: 0 5px;
-                color: #ccc;
-            }
+.breadcrumb li a:hover {
+    text-decoration: none;
+}
 
-            .breadcrumb li:last-child::after {
-                content: "";
-            }
+.breadcrumb li::after {
+    content: "/";
+    padding: 0 5px;
+    color: #ccc;
+}
 
-            .active span {
-                padding: 5px 10px;
-            }
-            
-            .content-collection {
-                width: 100%; /* Đảm bảo content-collection chiếm toàn bộ chiều rộng */
-                max-width: 1300px; /* Đặt max-width nếu có */
-                margin: 0 auto; /* Căn giữa nếu cần */
-            }
-            
-            .row {
-                width: 1300px;
-                max-width: inherit; /* Kế thừa max-width từ content-collection */
-                margin: 0 auto; /* Căn giữa nếu content-collection cũng căn giữa */
-                display: flex;         /* Hiển thị các phần tử con theo hàng ngang */
-                align-items: flex-start; /* Căn theo mép trên */
-            }
+.breadcrumb li:last-child::after {
+    content: "";
+}
 
-            .main-content {
-                width: 100%;
-            }
-            
-            .menu-category {
-                width: 20%;
-                margin: 0;
-                padding: 15px 0 15px 30px;
-            }
+.active span {
+    padding: 5px 10px;
+}
 
-            li a.list-item{
-                list-style: none;
-            }
-            li:not(:first-child) a.list-item {
-                border-top: 1px solid #e5e7eb;
-            }
-            .list-item {
-                display: flex;
-                align-items: center;
-                padding: 10px 10px;
-                text-decoration: none;
-                color: #374151;
-                transition: background-color 0.3s;
-                font-weight: 300;
-                font-family: 'Roboto', sans-serif;
-            }
-            .list-item:hover {
-                background-color: #f3f4f6;
-            }
-            .header-category {
-                font-size: 1.25rem;
-                font-weight: 500;
-                color: #374151;
-                font-family: 'Roboto', sans-serif;
-                padding: 10px 10px;
-            }
+.content-collection {
+    width: 100%; /* Đảm bảo content-collection chiếm toàn bộ chiều rộng */
+    max-width: 1300px; /* Đặt max-width nếu có */
+    margin: 0 auto; /* Căn giữa nếu cần */
+}
 
-            .content-collection {
-                width: 80%;            /* Nội dung chính chiếm 75% */
-                background: #fff;
-                padding: 15px;
-            }
+.row {
+    width: 1300px;
+    max-width: inherit; /* Kế thừa max-width từ content-collection */
+    margin: 0 auto; /* Căn giữa nếu content-collection cũng căn giữa */
+    display: flex;         /* Hiển thị các phần tử con theo hàng ngang */
+    align-items: flex-start; /* Căn theo mép trên */
+}
 
-            .header-content {
-                width: 100%; /* Kế thừa chiều rộng của row */
-                max-width: 100%; /* Đảm bảo không bị thu hẹp */
-                display: flex; /* Hiển thị ngang */
-                justify-content: space-between; /* Căn hai phần tử về hai phía */
-                align-items: center; /* Căn giữa theo trục dọc */
-                gap: 20px; /* Khoảng cách giữa hai phần */
-            }
-            
-            .header-content h1 {
-                margin: 0 0 0 35px;
-                font-size: 23px;
-                font-weight: 600;
-            }
+.main-content {
+    width: 100%;
+}
 
-            .product-content {
-                display: flex;  /* Đảm bảo phần tử hiển thị */
-                flex-wrap: wrap;
-                width: 100%;     /* Chiếm toàn bộ chiều rộng */
-                padding: 20px 25px;   /* Thêm padding để không bị dính mép */
-                background: #fff; /* Màu nền để dễ nhìn */
-                min-height: auto; /* Đảm bảo không bị ép về chiều cao 0 */
-            }
+.menu-category {
+    width: 20%;
+    margin: 0;
+    padding: 15px 0 15px 30px;
+}
+
+li a.list-item{
+    list-style: none;
+}
+li:not(:first-child) a.list-item {
+    border-top: 1px solid #e5e7eb;
+}
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    color: #374151;
+    transition: background-color 0.3s;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+}
+.list-item:hover {
+    background-color: #f3f4f6;
+}
+.header-category {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #374151;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px 10px;
+}
+
+.content-collection {
+    width: 80%;            /* Nội dung chính chiếm 75% */
+    background: #fff;
+    padding: 15px;
+}
+
+.header-content {
+    width: 100%; /* Kế thừa chiều rộng của row */
+    max-width: 100%; /* Đảm bảo không bị thu hẹp */
+    display: flex; /* Hiển thị ngang */
+    justify-content: space-between; /* Căn hai phần tử về hai phía */
+    align-items: center; /* Căn giữa theo trục dọc */
+    gap: 20px; /* Khoảng cách giữa hai phần */
+}
+
+.header-content h1 {
+    margin: 0 0 0 35px;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.product-content {
+    display: flex;  /* Đảm bảo phần tử hiển thị */
+    flex-wrap: wrap;
+    width: 100%;     /* Chiếm toàn bộ chiều rộng */
+    padding: 20px 25px;   /* Thêm padding để không bị dính mép */
+    background: #fff; /* Màu nền để dễ nhìn */
+    min-height: auto; /* Đảm bảo không bị ép về chiều cao 0 */
+}
 
 
-            .title-category {
-                flex: 1; /* Chiếm phần không gian hợp lý */
-            }
+.title-category {
+    flex: 1; /* Chiếm phần không gian hợp lý */
+}
 
-            .filter {
-                flex: 1;
-                text-align: right; /* Căn phần lọc sang phải */
-                margin: 0 35px 0 0;
-            }
+.filter {
+    flex: 1;
+    text-align: right; /* Căn phần lọc sang phải */
+    margin: 0 35px 0 0;
+}
 
-            /* Dropdown styling */
-            .sort-label {
-                font-size: 1rem;
-                font-weight: 400;
-                font-family: 'Roboto', sans-serif;
-                color: #374151;
-            }
-            .sort-select {
-                padding: 10px;
-                border: 1px solid #e5e7eb;
-                border-radius: 6px;
-                font-family: 'Roboto', sans-serif;
-                font-size: 1rem;
-                cursor: pointer;
-                background: #ffffff;
-                transition: all 0.3s;
-            }
-            .sort-select:hover {
-                border-color: #374151;
-            }
+/* Dropdown styling */
+.sort-label {
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    color: #374151;
+}
+.sort-select {
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #ffffff;
+    transition: all 0.3s;
+}
+.sort-select:hover {
+    border-color: #374151;
+}

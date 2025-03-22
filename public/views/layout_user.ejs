@@ -14,112 +14,123 @@
         <link rel="stylesheet" href="../user/output.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
         <title><%= title %></title>
     </head>
     <body class="font-roboto">
-        <div class="app">
-            
-            <header class="header">
-                <div class="top">
-                    <div class="left">HOTLINE</div>
-                    <div class="right">
-                        <span class="register">Đăng ký</span>
-                        <div class="separator">|</div>
-                        <span class="login">Đăng nhập</span>
-                    </div>
+        <header class="header">
+            <div class="top">
+                <div class="left">HOTLINE</div>
+                <div class="right">
+                    <span class="register">Đăng ký</span>
+                    <div class="separator">|</div>
+                    <span class="login">Đăng nhập</span>
                 </div>
-                    <div class="mid">
-                        <div class="logo">
-                            <a href="">
-                                <img src="https://a.storyblok.com/f/178900/960x417/1c74214dac/jnc-logo-resize.jpg/m/filters:quality(95)format(webp)" alt="">
-                            </a>
-                        </div>
-                        <div class="search">
-                            <input type="text" placeholder="Tìm kiếm...">
-                            <button type="submit">
-                                <i class="fa-regular fa-magnifying-glass"></i>
-                            </button>
-                        </div>
-                        <div class="cart">
-                            <a href="">
-                                <i class="fa-light fa-cart-shopping"></i>
-                                <span>Giỏ hàng</span>
-                            </a>
-                        </div>
+            </div>
+                <div class="mid">
+                    <!-- Nút menu 3 gạch ngang -->
+                    <div class="menu-toggle">
+                        <i class="fas fa-bars"></i>
                     </div>
-                <nav>
-                    <div class="header__navbar">
-                        <ul class="header__navbar-list">
-                            <li class="header__navbar-item">
-                                <a href="/home" class="header__navbar-item-link" title="Trang chủ">
-                                    <span>TRANG CHỦ</span>
-                                </a>
-                            </li>
-                            <li class="header__navbar-item dropdown">
-                                <a href="/product" class="header__navbar-item-link" title="Sản phẩm">
-                                    <span>SẢN PHẨM</span>
-                                </a>
-                            </li>
-                            <li class="header__navbar-item">
-                                <a href="" class="header__navbar-item-link" title="Tin tức">
-                                    <span>TIN TỨC</span>
-                                </a>
-                            </li>
-                            <li class="header__navbar-item">
-                                <a href="" class="header__navbar-item-link" title="Liên hệ">
-                                    <span>LIÊN HỆ</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            
-            <main>
-                <%- include(page) %>
-            </main>
-            
-            <footer class="bg-[#313131] text-white py-12">
-                <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">HỖ TRỢ KHÁCH HÀNG</h4>
-                        <ul>
-                            <li class="mb-2"><a href="#" class="hover:underline">Câu hỏi thường gặp</a></li>
-                            <li class="mb-2"><a href="#" class="hover:underline">Điều khoản dịch vụ</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">CHÍNH SÁCH</h4>
-                        <ul>
-                            <li class="mb-2"><a href="#" class="hover:underline">Chính sách bảo mật</a></li>
-                            <li class="mb-2"><a href="#" class="hover:underline">Chính sách đổi trả</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">THÔNG TIN LIÊN HỆ</h4>
-                        <ul>
-                            <li class="mb-2"><i class="fas fa-phone-alt mr-2"></i>Hotline: 0984 0249 901</li>
-                            <li class="mb-2"><i class="fas fa-envelope mr-2"></i>Email: 1150080154@sv.hcmunre.edu.vn</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">ĐĂNG KÝ NHẬN TIN</h4>
-                        <form class="flex flex-col">
-                            <input type="email" class="p-2 mb-4 rounded bg-white border border-gray-700 placeholder-gray-500 text-black" placeholder="Nhập email của bạn">
-                            <button class="p-2 rounded bg-blue-600 hover:bg-blue-700 transition duration-300">ĐĂNG KÝ</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="container mx-auto px-4 mt-8 border-t border-gray-700 pt-4 text-center">
-                    <p class="text-sm">&copy; 2023 Your Company. All rights reserved.</p>
-                </div>
-            </footer>
 
-        </div>
+                    <!-- Mobile Menu -->
+                    <div class="mobile-menu">
+                        <!-- Nút đóng menu -->
+                        <div class="close-menu">&times;</div>
+                        <a href="/home">TRANG CHỦ</a>
+                        <a href="/product">SẢN PHẨM</a>
+                        <a href="#">TIN TỨC</a>
+                        <a href="#">LIÊN HỆ</a>
+                    </div>
+                    
+                    <div class="logo">
+                        <a href="">
+                            <img src="https://a.storyblok.com/f/178900/960x417/1c74214dac/jnc-logo-resize.jpg/m/filters:quality(95)format(webp)" alt="">
+                        </a>
+                    </div>
+                    <div class="search">
+                        <input type="text" placeholder="Tìm kiếm...">
+                        <button type="submit">
+                            <i class="fa-regular fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="cart">
+                        <a href="">
+                            <i class="fa-light fa-cart-shopping"></i>
+                            <span>Giỏ hàng</span>
+                        </a>
+                    </div>
+                </div>
+            <nav>
+                <div class="header__navbar">
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item">
+                            <a href="/home" class="header__navbar-item-link" title="Trang chủ">
+                                <span>TRANG CHỦ</span>
+                            </a>
+                        </li>
+                        <li class="header__navbar-item dropdown">
+                            <a href="/product" class="header__navbar-item-link" title="Sản phẩm">
+                                <span>SẢN PHẨM</span>
+                            </a>
+                        </li>
+                        <li class="header__navbar-item">
+                            <a href="" class="header__navbar-item-link" title="Tin tức">
+                                <span>TIN TỨC</span>
+                            </a>
+                        </li>
+                        <li class="header__navbar-item">
+                            <a href="" class="header__navbar-item-link" title="Liên hệ">
+                                <span>LIÊN HỆ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        
+        <main>
+            <%- include(page) %>
+        </main>
+        
+        <footer class="bg-[#313131] text-white py-12">
+            <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">HỖ TRỢ KHÁCH HÀNG</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:underline">Câu hỏi thường gặp</a></li>
+                        <li class="mb-2"><a href="#" class="hover:underline">Điều khoản dịch vụ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">CHÍNH SÁCH</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:underline">Chính sách bảo mật</a></li>
+                        <li class="mb-2"><a href="#" class="hover:underline">Chính sách đổi trả</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">THÔNG TIN LIÊN HỆ</h4>
+                    <ul>
+                        <li class="mb-2"><i class="fas fa-phone-alt mr-2"></i>Hotline: 0984 0249 901</li>
+                        <li class="mb-2"><i class="fas fa-envelope mr-2"></i>Email: 1150080154@sv.hcmunre.edu.vn</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ĐĂNG KÝ NHẬN TIN</h4>
+                    <form class="flex flex-col items-center">
+                        <input type="email" class="p-2 mb-4 rounded bg-white border border-gray-700 placeholder-gray-500 text-black" placeholder="Nhập email của bạn">
+                        <button class="p-2 w-32 rounded bg-blue-600 text-white hover:bg-blue-700 transition duration-300">ĐĂNG KÝ</button>
+                    </form>
+                </div>
+            </div>
+            <div class="container mx-auto px-4 mt-8 border-t border-gray-700 pt-4 text-center">
+                <p class="text-sm">&copy; 2023 Your Company. All rights reserved.</p>
+            </div>
+        </footer>
         <script src="../user/script.js"></script>
     </body>
 </html>

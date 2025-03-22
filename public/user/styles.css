@@ -1,3 +1,9 @@
+html, body {
+    width: 100%;
+    min-width: 100vw;
+    overflow-x: hidden;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -13,12 +19,19 @@ body {
     box-sizing: border-box; 
     display: flex;
     justify-content: space-between;
-    padding: 0 300px;
+    padding: 0 155px;
     align-items: center;
     font-size: 16px;
 }
+
+@media screen and (max-width: 1500px) {
+    .top {
+        padding: 0 100px;
+    }
+}
   
 .top .left {
+    margin: 0 10px;
     font-weight: bold;
 }
   
@@ -49,32 +62,35 @@ body {
 
 .mid {
     display: flex;
-    justify-content: space-between; /* Align items horizontally */
+    justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-    padding: 15px 300px; /* Consistent padding */
+    padding: 15px 10%; /* Giảm padding để tránh tràn */
+    flex-wrap: wrap; /* Cho phép xuống dòng khi thu nhỏ */
 }
 
 .logo img {
-    display: block;
     max-height: 60px;
+    max-width: 100%; /* Đảm bảo ảnh không vượt quá khung */
+    height: auto;
+    margin-right: 20px;
 }
 
 .search {
-    box-sizing: border-box;
-    height: 45px; /* Chiều cao của thanh search */
-    flex: 1; /* Allow search bar to grow */
+    height: 45px;
+    flex: 1; /* Cho phép search bar co giãn */
     display: flex;
     align-items: center;
     background-color: #ffffff;
     border: 1px solid #007bff;
     border-radius: 25px;
-    max-width: 500px;
+    max-width: 600px;
+    min-width: 150px; /* Tránh bị mất hoàn toàn */
 }
 
 .search input {
     display: block;
-    padding-left: 15px;
+    padding: 0 15px;
     height: 100%;
     flex: 1;
     border: none;
@@ -99,7 +115,67 @@ body {
 }
 
 .cart {
-    display: block;
+    white-space: nowrap; /* Giữ cart trên một dòng */
+    margin-left: 20px;
+}
+
+/* Khi thu nhỏ màn hình */
+@media screen and (max-width: 1024px) {
+    .mid {
+        position: relative;       /* Cho phép định vị tuyệt đối các phần tử con nếu cần */
+        text-align: center;       /* Giúp căn giữa logo */
+        padding: 10px 0;          /* Điều chỉnh khoảng cách */
+        display: block;           /* Loại bỏ flex nếu không cần cho bố cục nhỏ */
+        width: 100%;
+    }
+    
+    .logo {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    /* Cập nhật .search sử dụng flex để các thành phần bên trong không bị tách riêng */
+    .search {
+        display: flex;
+        width: 80%;               /* Điều chỉnh độ rộng theo ý muốn */
+        margin: 20px auto 0;      /* Căn giữa và tạo khoảng cách phía trên */
+        justify-content: center;  /* Căn giữa các phần tử bên trong */
+        align-items: center;      /* Căn chỉnh theo chiều dọc */
+    }
+
+    .search button {
+        padding: 10px 15px;
+    }
+
+    .cart {
+        position: absolute;
+        right: 15px;              /* Điều chỉnh khoảng cách bên phải */
+        top: 15px;
+    }
+      
+    .cart span {
+        display: none;
+    }
+}
+
+
+/* Định dạng cho màn hình nhỏ hơn */
+@media screen and (max-width: 768px) {
+    .mid {
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search {
+        width: 90%; /* Để search bar co giãn theo chiều ngang */
+        height: 45px; /* Giữ nguyên chiều cao */
+    }
+
+
+    .cart span {
+        display: none;
+    }
 }
 
 .cart a {
@@ -159,45 +235,76 @@ body {
     color: #007bff; /* Màu chữ khi hover */
 }
 
-.dropdown-menu {
-    display: none; /* Ẩn mặc định */
-    position: absolute;
-    top: 49px;
-    left: 0;
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    width: 200px; /* Đặt chiều rộng cố định */
+/* Ẩn menu mobile và nút menu trên màn hình lớn */
+.menu-toggle,
+.mobile-menu {
+    display: none;
 }
 
-.header__navbar-item:hover .dropdown-menu {
-    display: block; /* Hiện ra khi hover */
+/* Hiển thị menu icon và mobile menu khi ở màn hình nhỏ */
+@media screen and (max-width: 1024px) {
+    /* Ẩn top header */
+    .top {
+        display: none;
+    }
+
+    /* Ẩn navbar desktop */
+    .header__navbar {
+        display: none;
+    }
+
+    /* Hiển thị menu icon (3 gạch ngang) */
+    .menu-toggle {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        color: #007bff;
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        z-index: 1001;
+    }
+
+    /* Hiển thị menu mobile */
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -250px; /* Đẩy menu ra ngoài màn hình khi ẩn */
+        width: 250px;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease-in-out;
+        /* Giảm padding-top để header của menu không bị đẩy xuống */
+        padding-top: 0;
+        z-index: 1000;
+    }
+
+    /* Khi menu được mở */
+    .mobile-menu.active {
+        left: 0;
+    }
+
+    .mobile-menu a {
+        padding: 15px;
+        text-align: left;
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Nút đóng menu */
+    .close-menu {
+        font-size: 24px;
+        cursor: pointer;
+        text-align: right;
+        padding: 10px 15px;
+    }
 }
 
-.dropdown-menu li {
-    border-bottom: 1px solid #ddd;
-}
-
-.dropdown-menu li:last-child {
-    border-bottom: none; /* Xóa border cho phần tử cuối cùng */
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 10px 15px;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.dropdown-menu a:hover {
-    background-color: #f0f0f0;
-    color: #007bff;
-}
 
 .container {
     width: 100%;
@@ -256,20 +363,22 @@ body {
 }
 
 .col.pb-5 {
-    display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc (nếu có chiều cao xác định) */
+    max-width: 1250px;
 }
 
-
 .my-product-grid {
-    width: 1200px;
-    display: flex;
-    flex-wrap: wrap; /* Cho phép xuống dòng */
+    display: inline-block; /* Giúp container co lại theo nội dung bên trong */
+    text-align: center;
+    max-width: 100%; /* Đảm bảo không vượt quá cha */
+    margin: auto; /* Căn giữa trong cha */
+    white-space: normal; /* Đảm bảo sản phẩm xuống dòng khi hết chỗ */
+}
+
+.info-product {
+    display: inline-block;
 }
 
 .product-row {
-    max-width: 1200px;
     margin: 0 auto;
     border-bottom: 1px solid #ddd;
     display: block;
@@ -322,6 +431,7 @@ body {
 }
 
 .name-product {
+    max-width: 210px;
     padding: 0 20px;
     padding-top: 5px;
     white-space: nowrap;
