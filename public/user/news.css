@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+.main-content-wrapper {
+    margin: auto;
+    padding: 20px 0;
+}
+
+.breadcrumb {
+    display: flex;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    background: none;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 10px;
+}
+
+.breadcrumb li a:hover {
+    text-decoration: none;
+}
+
+.breadcrumb li::after {
+    content: "/";
+    padding: 0 5px;
+    color: #ccc;
+}
+
+.breadcrumb li:last-child::after {
+    content: "";
+}
+
+.my-container {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    margin: auto;
+    margin-top: 20px;
+    padding: 0 15px;
+    max-width: 1301px;
+}
+
+.active span {
+    padding: 5px 10px;
+}
+
+.post-container {
+    max-width: 1301px;
+}
+
+.row {
+    width: 100%;
+    max-width: inherit;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+}
