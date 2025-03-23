@@ -1,12 +1,33 @@
-$(document).ready(function() {
-    $('.grid_sorting_button').on('click', function() {
-        var filterValue = $(this).attr('data-filter');
-        $('.grid_sorting_button').removeClass('active');
-        $(this).addClass('active');
-        $('.info-product').hide();
-        $('.' + filterValue).show();
-    });
-});
+let slideIndex = 0;
+const slidesWrapper = document.createElement("div"); // Tạo wrapper để chứa tất cả slides
+const slides = document.querySelectorAll(".mySlides");
+const totalSlides = slides.length;
+
+// Bọc tất cả slide vào slidesWrapper
+const slideshowContainer = document.querySelector(".slideshow-container");
+slidesWrapper.classList.add("slides-wrapper");
+
+slides.forEach(slide => slidesWrapper.appendChild(slide));
+slideshowContainer.insertBefore(slidesWrapper, slideshowContainer.firstChild);
+
+function showSlides() {
+    slideIndex = (slideIndex + 1) % totalSlides;
+    slidesWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+}
+
+// Chuyển ảnh tự động mỗi 3 giây
+let slideInterval = setInterval(showSlides, 3000);
+
+// Chuyển ảnh bằng nút prev/next
+function plusSlides(n) {
+    slideIndex = (slideIndex + n + totalSlides) % totalSlides;
+    slidesWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+    
+    // Reset lại thời gian tự động chuyển ảnh
+    clearInterval(slideInterval);
+    slideInterval = setInterval(showSlides, 3000);
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.querySelector(".menu-toggle");
