@@ -64,8 +64,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
-    padding: 15px 10%; /* Giảm padding để tránh tràn */
+    background-color: #f4f4f4;
+    padding: 25px 10%; /* Giảm padding để tránh tràn */
     flex-wrap: wrap; /* Cho phép xuống dòng khi thu nhỏ */
 }
 
@@ -124,7 +124,7 @@ body {
     .mid {
         position: relative;       /* Cho phép định vị tuyệt đối các phần tử con nếu cần */
         text-align: center;       /* Giúp căn giữa logo */
-        padding: 10px 0;          /* Điều chỉnh khoảng cách */
+        padding: 15px 0;          /* Điều chỉnh khoảng cách */
         display: block;           /* Loại bỏ flex nếu không cần cho bố cục nhỏ */
         width: 100%;
     }
@@ -162,7 +162,7 @@ body {
 /* Định dạng cho màn hình nhỏ hơn */
 @media screen and (max-width: 768px) {
     .mid {
-        padding: 10px;
+        padding: 15px 10px;
         flex-direction: column;
         align-items: center;
     }
@@ -201,7 +201,7 @@ body {
     justify-content: center; /* Căn giữa phần tử trong nav */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     border-bottom: 1px solid #ddd;
 }
 
