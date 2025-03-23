@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
 .main-content-wrapper {
     margin: auto;
     padding: 20px 0;
@@ -46,12 +46,12 @@
     max-width: 1301px;
 }
 
-.active span {
-    padding: 5px 10px;
+.cart-container {
+    width: 1200px;
 }
 
-.post-container {
-    max-width: 100%;
+.active span {
+    padding: 5px 10px;
 }
 
 .row {
@@ -60,4 +60,21 @@
     margin: 0 auto;
     display: flex;
     align-items: flex-start;
+}
+
+@media (max-width: 434px) {
+    table {
+        min-width: 434px;
+    }
+
+    .border-collapse {
+        width: 434px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .total-mobile {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
 }
