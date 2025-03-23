@@ -1,0 +1,143 @@
+<div id="cart">
+    <div class="my-container mx-auto mb-20">
+        <div class="payment-container w-full">
+            <div class="container mx-auto p-4">
+                <div class="flex flex-col lg:flex-row justify-between">
+                    <div class="w-full lg:w-2/3">
+                    <h1 class="text-2xl font-bold mb-4">
+                    Thông tin giao hàng
+                    </h1>
+                    <form class="space-y-4">
+                    <div>
+                    <label class="block text-gray-700">
+                        Họ tên khách hàng
+                    </label>
+                    <input class="w-full border border-gray-300 p-[10px] rounded" type="text" value="Quân"/>
+                    </div>
+                    <div class="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+                        <div class="w-full lg:w-2/3">
+                         <label class="block text-gray-700">
+                          Email
+                         </label>
+                         <input class="w-full border border-gray-300 p-[10px] rounded text-red-500" type="email" value="mq.minhquan040804@gmail.com"/>
+                        </div>
+                        <div class="w-full lg:w-1/3">
+                         <label class="block text-gray-700">
+                          Số điện thoại
+                         </label>
+                         <input class="w-full border border-gray-300 p-[10px] rounded text-red-500" type="text" value="121244"/>
+                        </div>
+                       </div>
+                    <div>
+                    <label class="block text-gray-700">
+                        Địa chỉ
+                    </label>
+                    <input class="w-full border border-gray-300 p-[10px] rounded" type="text"/>
+                    </div>
+                    <div>
+                    <label class="block text-gray-700">
+                        Hình thức thanh toán
+                    </label>
+                    <div class="border border-gray-300 rounded-lg mb-4">
+                        <!-- Lựa chọn: Thanh toán khi giao hàng (COD) -->
+                        <div class="p-4 flex items-center">
+                        <input checked="" class="form-radio text-green-500" id="cod" name="payment" type="radio"/>
+                        <label class="ml-2 flex items-center cursor-pointer" for="cod">
+                        <img alt="Icon of a package representing cash on delivery" class="w-6 h-6 mr-2" src="https://placehold.co/24x24"/>
+                        <span>
+                        Thanh toán khi giao hàng (COD)
+                        </span>
+                        </label>
+                        </div>
+                        <!-- Đường kẻ ngang giữa phương thức và thông tin -->
+                        <hr class="border-gray-300"/>
+                        <!-- Phần mô tả COD -->
+                        <div class="px-4 pt-4 pb-4" id="cod-info">
+                        <p class="text-sm text-gray-700">
+                        Khi chọn phương thức Thanh toán khi giao hàng (COD), bạn vui lòng kiểm tra kỹ hàng trước khi nhận và thanh toán toàn bộ giá trị đơn hàng cho shipper.
+                        </p>
+                        </div>
+                        <!-- Đường kẻ ngang ngăn cách giữa COD và Bank -->
+                        <hr class="border-gray-300"/>
+                        <!-- Lựa chọn: Chuyển khoản ngân hàng -->
+                        <div class="p-4 flex items-center">
+                        <input class="form-radio text-green-500" id="bank" name="payment" type="radio"/>
+                        <label class="ml-2 flex items-center cursor-pointer" for="bank">
+                        <img alt="Icon of a bank representing bank transfer" class="w-6 h-6 mr-2" src="https://placehold.co/24x24"/>
+                        <span>
+                        Chuyển khoản ngân hàng (Tự động xác nhận giao dịch)
+                        </span>
+                        </label>
+                        </div>
+                        <!-- Đường kẻ ngang giữa phương thức và thông tin -->
+                        <hr class="border-gray-300"/>
+                        <!-- Phần mô tả chuyển khoản -->
+                        <div class="px-4 pt-4 pb-4 hidden" id="bank-info">
+                        <p class="text-sm text-gray-700">
+                        Dùng App ngân hàng quét mã QR Code, tự động xác nhận thanh toán trong 10 giây. Quý khách vui lòng ấn
+                        <strong>
+                        "Hoàn tất đơn hàng"
+                        </strong>
+                        để thực hiện thanh toán chuyển khoản ở bước tiếp theo.
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                    <a class="text-green-500 hover:underline" href="/cart">
+                        Giỏ hàng
+                    </a>
+                    <button class="bg-green-500 text-white px-4 p-[10px] rounded-lg hover:bg-green-600">
+                        Hoàn tất đơn hàng
+                    </button>
+                    </div>
+                    </form>
+                    </div>
+                    <div class="w-full lg:w-1/3 mt-8 lg:mt-0 lg:ml-8">
+                    <h1 class="text-2xl font-bold mt-6 mb-4">
+                    GIỎ HÀNG
+                    </h1>
+                    <div class="border border-gray-300 p-4 rounded">
+                    <div class="flex justify-between mb-2">
+                    <span>
+                        Sản phẩm 1
+                    </span>
+                    <span>
+                        3,131,231
+                    </span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                    <span>
+                        Sản phẩm 2
+                    </span>
+                    <span>
+                        2,414
+                    </span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                    <span>
+                        Sản phẩm 3
+                    </span>
+                    <span>
+                        2,414
+                    </span>
+                    </div>
+                    <div class="flex justify-between font-bold">
+                    <span>
+                        Tổng tiền
+                    </span>
+                    <span>
+                        3,136,059
+                    </span>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+        
+</div>
+
+
+

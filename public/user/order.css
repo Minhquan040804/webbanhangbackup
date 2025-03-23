@@ -1,0 +1,13 @@
+
+.my-container {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    margin: auto;
+    margin-top: 20px;
+    padding: 0 15px;
+    max-width: 1301px;
+}
+
+.payment-container {
+    width: 1200px;
+}

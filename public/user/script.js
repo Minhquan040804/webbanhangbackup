@@ -64,3 +64,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const codRadio = document.getElementById('cod');
+    const bankRadio = document.getElementById('bank');
+    const codInfo = document.getElementById('cod-info');
+    const bankInfo = document.getElementById('bank-info');
+
+    function toggleInfo() {
+        if (codRadio.checked) {
+            codInfo.style.display = 'block';
+            bankInfo.style.display = 'none';
+        } else if (bankRadio.checked) {
+            codInfo.style.display = 'none';
+            bankInfo.style.display = 'block';
+        }
+    }
+
+    // Lắng nghe sự kiện khi chọn radio
+    codRadio.addEventListener('change', toggleInfo);
+    bankRadio.addEventListener('change', toggleInfo);
+
+    // Hiển thị mặc định
+    toggleInfo();
+});

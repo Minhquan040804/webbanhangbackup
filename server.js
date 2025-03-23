@@ -84,6 +84,14 @@ app.get('/cart', (req, res) => {
     });
 });
 
+app.get('/order', (req, res) => {
+    res.render('layout_user', { 
+        title: 'Đơn hàng', 
+        page: 'customer/order/index',
+        cssFiles: ['styles.css', 'order.css']  // Sử dụng cả hai file CSS
+    });
+});
+
 app.get('/contact', (req, res) => {
     res.render('layout_user', { 
         title: 'Liên hệ', 
