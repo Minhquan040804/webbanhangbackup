@@ -1,6 +1,6 @@
 // URL của API
-const ROLE_API_URL = "http://localhost:3000/roles";
-const ACCOUNT_API_URL = "http://localhost:3000/accounts";
+const ROLE_API_URL = "http://localhost:3000/api/roles";
+const ACCOUNT_API_URL = "http://localhost:3000/api/accounts";
 
 // Hàm lấy danh sách vai trò từ API và hiển thị
 async function fetchRoles() {

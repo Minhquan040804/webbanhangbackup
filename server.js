@@ -30,12 +30,12 @@ const roleRoutes = require('./routes/roleRoutes');
 const userAccountRoutes = require('./routes/userAccountRoutes');
 
 // Use routes
-app.use('/product-categories', productCategoryRoutes);
-app.use('/products', productRoutes);
-app.use('/news', newsRoutes);
-app.use('/orders', orderRoutes);
-app.use('/roles', roleRoutes);
-app.use('/accounts', userAccountRoutes);
+app.use('/api/product-categories', productCategoryRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/news', newsRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/roles', roleRoutes);
+app.use('/api/accounts', userAccountRoutes);
 
 // Route để mở trang layout_admin
 app.get('/admin', (req, res) => {
@@ -68,6 +68,13 @@ app.get('/product', (req, res) => {
     });
 });
 
+app.get('/news', (req, res) => {
+    res.render('layout_user', { 
+        title: 'Tin tức', 
+        page: 'customer/news/index',
+        cssFiles: ['styles.css', 'news.css']  // Sử dụng cả hai file CSS
+    });
+});
 
 connectDB().then(() => {
     app.listen(port, () => {

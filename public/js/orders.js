@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000/orders";
+const API_BASE_URL = "http://localhost:3000/api/orders";
 
 // Lấy danh sách đơn hàng
 function fetchOrders() {

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/product-categories";
+const API_URL = "http://localhost:3000/api/product-categories";
 
 // Hàm chuyển đổi text thành slug (alias)
 function slugify(text) {

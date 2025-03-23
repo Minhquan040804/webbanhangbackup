@@ -1,5 +1,5 @@
-const API_BASE_URL = "http://localhost:3000/accounts";
-const ROLES_API_URL = "http://localhost:3000/roles";
+const API_BASE_URL = "http://localhost:3000/api/accounts";
+const ROLES_API_URL = "http://localhost:3000/api/roles";
 
 let roleMap = {}; // Ánh xạ từ role_id sang tên vai trò
 

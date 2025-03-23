@@ -1,5 +1,5 @@
-const API_PRODUCTS = "http://localhost:3000/products";
-const API_CATEGORIES = "http://localhost:3000/product-categories";
+const API_PRODUCTS = "http://localhost:3000/api/products";
+const API_CATEGORIES = "http://localhost:3000/api/product-categories";
 
 let categoriesMap = {};
 

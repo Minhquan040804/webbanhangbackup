@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/news";
+const API_URL = "http://localhost:3000/api/news";
 
 // Hàm tạo alias từ tiêu đề
 function generateAlias(title) {
