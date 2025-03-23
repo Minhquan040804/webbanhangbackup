@@ -76,6 +76,22 @@ app.get('/news', (req, res) => {
     });
 });
 
+app.get('/cart', (req, res) => {
+    res.render('layout_user', { 
+        title: 'Giỏ hàng', 
+        page: 'customer/cart/index',
+        cssFiles: ['styles.css', 'cart.css']  // Sử dụng cả hai file CSS
+    });
+});
+
+app.get('/contact', (req, res) => {
+    res.render('layout_user', { 
+        title: 'Liên hệ', 
+        page: 'customer/contact/index',
+        cssFiles: ['styles.css', 'contact.css']  // Sử dụng cả hai file CSS
+    });
+});
+
 connectDB().then(() => {
     app.listen(port, () => {
         console.log(`Máy chủ đang chạy trên http://localhost:${port}`);
